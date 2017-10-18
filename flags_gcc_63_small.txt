@@ -1,0 +1,593 @@
+
+# -O0 | -O1 | -O2 | -O3 | -Ofast | -Os
+
+# Aggressively optimize loops using language constraints.
+-faggressive-loop-optimizations|-fno-aggressive-loop-optimizations
+
+# Allow optimization for floating-point arithmetic which may change the result of the operation due to rounding.
+-fassociative-math|-fno-associative-math
+
+# Generate unwind tables that are exact at each instruction boundary.
+-fasynchronous-unwind-tables|-fno-asynchronous-unwind-tables
+
+# Generate auto-inc/dec instructions.
+-fauto-inc-dec|-fno-auto-inc-dec
+
+# Replace add, compare, branch with branch on count register.
+-fbranch-count-reg|-fno-branch-count-reg
+
+# Use profiling information for branch probabilities.
+-fbranch-probabilities|-fno-branch-probabilities
+
+# Perform branch target load optimization before prologue / epilogue threading.
+-fbranch-target-load-optimize|-fno-branch-target-load-optimize
+
+# Perform branch target load optimization after prologue / epilogue threading.
+-fbranch-target-load-optimize2|-fno-branch-target-load-optimize2
+
+# Restrict target load migration not to re-use registers in any basic block.
+-fbtr-bb-exclusive|-fno-btr-bb-exclusive
+
+# Save registers around function calls.
+-fcaller-saves|-fno-caller-saves
+
+# Looks for opportunities to reduce stack adjustments and stack references.
+-fcombine-stack-adjustments|-fno-combine-stack-adjustments
+
+# Perform comparison elimination after register allocation has finished.
+-fcompare-elim|-fno-compare-elim
+
+# Do not perform optimizations increasing noticeably stack usage.
+-fconserve-stack|-fno-conserve-stack
+
+# Perform a register copy-propagation optimization pass.
+-fcprop-registers|-fno-cprop-registers
+
+# Perform cross-jumping optimization.
+-fcrossjumping|-fno-crossjumping
+
+# When running CSE, follow jumps to their targets.
+-fcse-follow-jumps|-fno-cse-follow-jumps
+
+# Complex multiplication and division follow Fortran rules.
+-fcx-fortran-rules|-fno-cx-fortran-rules
+
+# Omit range reduction step when performing complex division.
+-fcx-limited-range|-fno-cx-limited-range
+
+# Use the RTL dead code elimination pass.
+-fdce|-fno-dce
+
+# Defer popping functions args from stack until later.
+-fdefer-pop|-fno-defer-pop
+
+# Attempt to fill delay slots of branch instructions.
+-fdelayed-branch|-fno-delayed-branch
+
+# Delete dead instructions that may throw exceptions.
+-fdelete-dead-exceptions|-fno-delete-dead-exceptions
+
+# Delete useless null pointer checks.
+-fdelete-null-pointer-checks|-fno-delete-null-pointer-checks
+
+# Try to convert virtual calls to direct ones.
+-fdevirtualize|-fno-devirtualize
+
+# Perform speculative devirtualization.
+-fdevirtualize-speculatively|-fno-devirtualize-speculatively
+
+# Use the RTL dead store elimination pass.
+-fdse|-fno-dse
+
+# Perform early inlining.
+-fearly-inlining|-fno-early-inlining
+
+# Enable exception handling.
+-fexceptions|-fno-exceptions
+
+# Perform a number of minor, expensive optimizations.
+-fexpensive-optimizations|-fno-expensive-optimizations
+
+# Assume no NaNs or infinities are generated.
+-ffinite-math-only|-fno-finite-math-only
+
+# Don't allocate floats and doubles in extended-precision registers.
+-ffloat-store|-fno-float-store
+
+# Perform a forward propagation pass on RTL.
+-fforward-propagate|-fno-forward-propagate
+
+# Allow function addresses to be held in registers.
+-ffunction-cse|-fno-function-cse
+
+# Perform global common subexpression elimination.
+-fgcse|-fno-gcse
+
+# Perform global common subexpression elimination after register allocation has finished.
+-fgcse-after-reload|-fno-gcse-after-reload
+
+# Perform redundant load after store elimination in global common subexpression elimination.
+-fgcse-las|-fno-gcse-las
+
+# Perform enhanced load motion during global common subexpression elimination.
+-fgcse-lm|-fno-gcse-lm
+
+# Perform store motion after global common subexpression elimination.
+-fgcse-sm|-fno-gcse-sm
+
+# Enable in and out of Graphite representation.
+-fgraphite|-fno-graphite
+
+# Enable Graphite Identity transformation.
+-fgraphite-identity|-fno-graphite-identity
+
+# Enable guessing of branch probabilities.
+-fguess-branch-probability|-fno-guess-branch-probability
+
+# Same as -fexceptions.  Use the latter option instead.  Uses of this option are diagnosed.|-fno-exceptions.  Use the latter option instead.  Uses of this option are diagnosed.
+-fhandle-exceptions
+
+# Enable hoisting adjacent loads to encourage generating conditional move instructions.
+-fhoist-adjacent-loads|-fno-hoist-adjacent-loads
+
+# Perform conversion of conditional jumps to branchless equivalents.
+-fif-conversion|-fno-if-conversion
+
+# Perform conversion of conditional jumps to conditional execution.
+-fif-conversion2|-fno-if-conversion2
+
+# Perform indirect inlining.
+-findirect-inlining|-fno-indirect-inlining
+
+# Enable inlining of function declared "inline", disabling disables all inlining.
+-finline|-fno-inline
+
+# Inline __atomic operations when a lock free instruction sequence is available.
+-finline-atomics|-fno-inline-atomics
+
+# Integrate functions not declared "inline" into their callers when profitable.
+-finline-functions|-fno-inline-functions
+
+# Integrate functions only required by their single caller.
+-finline-functions-called-once|-fno-inline-functions-called-once
+
+# Integrate functions into their callers when code size is known not to grow.
+-finline-small-functions|-fno-inline-small-functions
+
+# Perform interprocedural constant propagation.
+-fipa-cp|-fno-ipa-cp
+
+# Perform alignment discovery and propagation to make Interprocedural constant propagation stronger.
+-fipa-cp-alignment|-fno-ipa-cp-alignment
+
+# Perform cloning to make Interprocedural constant propagation stronger.
+-fipa-cp-clone|-fno-ipa-cp-clone
+
+# Perform Identical Code Folding for functions and read-only variables.
+-fipa-icf|-fno-ipa-icf
+
+# Perform Identical Code Folding for functions.
+-fipa-icf-functions|-fno-ipa-icf-functions
+
+# Perform interprocedural profile propagation.
+-fipa-profile|-fno-ipa-profile
+
+# Perform interprocedural points-to analysis.
+-fipa-pta|-fno-ipa-pta
+
+# Discover pure and const functions.
+-fipa-pure-const|-fno-ipa-pure-const
+
+# Use caller save register across calls if possible.
+-fipa-ra|-fno-ipa-ra
+
+# Discover readonly and non addressable static variables.
+-fipa-reference|-fno-ipa-reference
+
+# Perform interprocedural reduction of aggregates.
+-fipa-sra|-fno-ipa-sra
+
+# Use IRA based register pressure calculation in RTL hoist optimizations.
+-fira-hoist-pressure|-fno-ira-hoist-pressure
+
+# Use IRA based register pressure calculation in RTL loop optimizations.
+-fira-loop-pressure|-fno-ira-loop-pressure
+
+# Share slots for saving different hard registers.
+-fira-share-save-slots|-fno-ira-share-save-slots
+
+# Share stack slots for spilled pseudo-registers.
+-fira-share-spill-slots|-fno-ira-share-spill-slots
+
+# Optimize induction variables on trees.
+-fivopts|-fno-ivopts
+
+# Use jump tables for sufficiently large switch statements.
+-fjump-tables|-fno-jump-tables
+
+# This option lacks documentation.
+-fkeep-gc-roots-live|-fno-keep-gc-roots-live
+
+# Tell DSE that the storage for a C++ object is dead when the constructor starts and when the destructor finishes.
+-flifetime-dse|-fno-lifetime-dse
+
+# Relief of register pressure through live range shrinkage.
+-flive-range-shrinkage|-fno-live-range-shrinkage
+
+# Enable the loop nest optimizer.
+-floop-nest-optimize|-fno-loop-nest-optimize
+
+# Mark all loops as parallel.
+-floop-parallelize-all|-fno-loop-parallelize-all
+
+# Do CFG-sensitive rematerialization in LRA.
+-flra-remat|-fno-lra-remat
+
+# Set errno after built-in math functions.
+-fmath-errno|-fno-math-errno
+
+# Perform SMS based modulo scheduling before the first scheduling pass.
+-fmodulo-sched|-fno-modulo-sched
+
+# Perform SMS based modulo scheduling with register moves allowed.
+-fmodulo-sched-allow-regmoves|-fno-modulo-sched-allow-regmoves
+
+# Move loop invariant computations out of loops.
+-fmove-loop-invariants|-fno-move-loop-invariants
+
+# Support synchronous non-call exceptions.
+-fnon-call-exceptions|-fno-non-call-exceptions
+
+# Treat a throw() exception specification as noexcept to improve code size.
+-fnothrow-opt|-fno-nothrow-opt
+
+# When possible do not generate stack frames.
+-fomit-frame-pointer|-fno-omit-frame-pointer
+
+# Enable all optimization info dumps on stderr.
+-fopt-info|-fno-opt-info
+
+# Optimize sibling and tail recursive calls.
+-foptimize-sibling-calls|-fno-optimize-sibling-calls
+
+# Enable string length optimizations on trees.
+-foptimize-strlen|-fno-optimize-strlen
+
+# Pack structure members together without holes.
+-fpack-struct|-fno-pack-struct
+
+# Perform partial inlining.
+-fpartial-inlining|-fno-partial-inlining
+
+# Perform loop peeling.
+-fpeel-loops|-fno-peel-loops
+
+# Enable machine specific peephole optimizations.
+-fpeephole|-fno-peephole
+
+# Enable an RTL peephole pass before sched2.
+-fpeephole2|-fno-peephole2
+
+# Use PLT for PIC calls (-fno-plt: load the address from GOT at call site).|-fno-no-plt: load the address from GOT at call site).
+-fplt
+
+# Run predictive commoning optimization.
+-fpredictive-commoning|-fno-predictive-commoning
+
+# Generate prefetch instructions, if available, for arrays in loops.
+-fprefetch-loop-arrays|-fno-prefetch-loop-arrays
+
+# Same as -fassociative-math for expressions which include division.|-fno-associative-math for expressions which include division.
+-freciprocal-math
+
+# Return small aggregates in registers.
+-freg-struct-return|-fno-reg-struct-return
+
+# Perform a register renaming optimization pass.
+-frename-registers|-fno-rename-registers
+
+# Reorder basic blocks to improve code placement.
+-freorder-blocks|-fno-reorder-blocks
+
+# Reorder basic blocks and partition into hot and cold sections.
+-freorder-blocks-and-partition|-fno-reorder-blocks-and-partition
+
+# Reorder functions to improve code placement.
+-freorder-functions|-fno-reorder-functions
+
+# Add a common subexpression elimination pass after loop optimizations.
+-frerun-cse-after-loop|-fno-rerun-cse-after-loop
+
+# Enable/Disable the traditional scheduling in loops that already passed modulo scheduling.
+-freschedule-modulo-scheduled-loops|-fno-reschedule-modulo-scheduled-loops
+
+# Disable optimizations that assume default FP rounding behavior.
+-frounding-math|-fno-rounding-math
+
+# Generate run time type descriptor information.
+-frtti|-fno-rtti
+
+# Enable the critical path heuristic in the scheduler.
+-fsched-critical-path-heuristic|-fno-sched-critical-path-heuristic
+
+# Enable the dependent count heuristic in the scheduler.
+-fsched-dep-count-heuristic|-fno-sched-dep-count-heuristic
+
+# Enable the group heuristic in the scheduler.
+-fsched-group-heuristic|-fno-sched-group-heuristic
+
+# Enable scheduling across basic blocks.
+-fsched-interblock|-fno-sched-interblock
+
+# Enable the last instruction heuristic in the scheduler.
+-fsched-last-insn-heuristic|-fno-sched-last-insn-heuristic
+
+# Enable register pressure sensitive insn scheduling.
+-fsched-pressure|-fno-sched-pressure
+
+# Enable the rank heuristic in the scheduler.
+-fsched-rank-heuristic|-fno-sched-rank-heuristic
+
+# Allow speculative motion of non-loads.
+-fsched-spec|-fno-sched-spec
+
+# Enable the speculative instruction heuristic in the scheduler.
+-fsched-spec-insn-heuristic|-fno-sched-spec-insn-heuristic
+
+# Allow speculative motion of some loads.
+-fsched-spec-load|-fno-sched-spec-load
+
+# Allow speculative motion of more loads.
+-fsched-spec-load-dangerous|-fno-sched-spec-load-dangerous
+
+# Allow premature scheduling of queued insns.
+-fsched-stalled-insns|-fno-sched-stalled-insns
+
+# Set dependence distance checking in premature scheduling of queued insns.
+-fsched-stalled-insns-dep|-fno-sched-stalled-insns-dep
+
+# If scheduling post reload, do superblock scheduling.
+-fsched2-use-superblocks|-fno-sched2-use-superblocks
+
+# Perform a target dependent instruction fusion optimization pass.
+-fschedule-fusion|-fno-schedule-fusion
+
+# Reschedule instructions before register allocation.
+-fschedule-insns|-fno-schedule-insns
+
+# Reschedule instructions after register allocation.
+-fschedule-insns2|-fno-schedule-insns2
+
+# Access data in the same section from shared anchor points.
+-fsection-anchors|-fno-section-anchors
+
+# Perform software pipelining of inner loops during selective scheduling.
+-fsel-sched-pipelining|-fno-sel-sched-pipelining
+
+# Perform software pipelining of outer loops during selective scheduling.
+-fsel-sched-pipelining-outer-loops|-fno-sel-sched-pipelining-outer-loops
+
+# Reschedule pipelined regions without pipelining.
+-fsel-sched-reschedule-pipelined|-fno-sel-sched-reschedule-pipelined
+
+# Schedule instructions using selective scheduling algorithm.
+-fselective-scheduling|-fno-selective-scheduling
+
+# Run selective scheduling after reload.
+-fselective-scheduling2|-fno-selective-scheduling2
+
+# Use the narrowest integer type possible for enumeration types.
+-fshort-enums|-fno-short-enums
+
+# Force the underlying type for "wchar_t" to be "unsigned short".
+-fshort-wchar|-fno-short-wchar
+
+# Emit function prologues only before parts of the function that need it, rather than at the top of the function.
+-fshrink-wrap|-fno-shrink-wrap
+
+# Disable optimizations observable by IEEE signaling NaNs.
+-fsignaling-nans|-fno-signaling-nans
+
+# Disable floating point optimizations that ignore the IEEE signedness of zero.
+-fsigned-zeros|-fno-signed-zeros
+
+# Convert floating point constants to single precision constants.
+-fsingle-precision-constant|-fno-single-precision-constant
+
+# Split lifetimes of induction variables when loops are unrolled.
+-fsplit-ivs-in-unroller|-fno-split-ivs-in-unroller
+
+# Split paths leading to loop backedges.
+-fsplit-paths|-fno-split-paths
+
+# Split wide types into independent registers.
+-fsplit-wide-types|-fno-split-wide-types
+
+# Enable backward propagation of use properties at the SSA level.
+-fssa-backprop|-fno-ssa-backprop
+
+# Optimize conditional patterns using SSA PHI nodes.
+-fssa-phiopt|-fno-ssa-phiopt
+
+# Optimize amount of stdarg registers saved to stack at start of function.
+-fstdarg-opt|-fno-stdarg-opt
+
+# Assume strict aliasing rules apply.
+-fstrict-aliasing|-fno-strict-aliasing
+
+# Assume that values of enumeration type are always within the minimum range of that type.
+-fstrict-enums|-fno-strict-enums
+
+# Treat signed overflow as undefined.
+-fstrict-overflow|-fno-strict-overflow
+
+# Force bitfield accesses to match their type width.
+-fstrict-volatile-bitfields|-fno-strict-volatile-bitfields
+
+# Perform jump threading optimizations.
+-fthread-jumps|-fno-thread-jumps
+
+# Do not generate thread-safe code for initializing local statics.
+-fno-threadsafe-statics|-fthreadsafe-statics
+
+# Perform superblock formation via tail duplication.
+-ftracer|-fno-tracer
+
+# Assume floating-point operations can trap.
+-ftrapping-math|-fno-trapping-math
+
+# Trap for signed overflow in addition, subtraction and multiplication.
+-ftrapv|-fno-trapv
+
+# Enable SSA-BIT-CCP optimization on trees.
+-ftree-bit-ccp|-fno-tree-bit-ccp
+
+# Enable conditional dead code elimination for builtin calls.
+-ftree-builtin-call-dce|-fno-tree-builtin-call-dce
+
+# Enable SSA-CCP optimization on trees.
+-ftree-ccp|-fno-tree-ccp
+
+# Enable loop header copying on trees.
+-ftree-ch|-fno-tree-ch
+
+# Enable SSA coalescing of user variables.
+-ftree-coalesce-vars|-fno-tree-coalesce-vars
+
+# Enable copy propagation on trees.
+-ftree-copy-prop|-fno-tree-copy-prop
+
+# Transform condition stores into unconditional ones.
+-ftree-cselim|-fno-tree-cselim
+
+# Enable SSA dead code elimination optimization on trees.
+-ftree-dce|-fno-tree-dce
+
+# Enable dominator optimizations.
+-ftree-dominator-opts|-fno-tree-dominator-opts
+
+# Enable dead store elimination.
+-ftree-dse|-fno-tree-dse
+
+# Enable forward propagation on trees.
+-ftree-forwprop|-fno-tree-forwprop
+
+# Enable Full Redundancy Elimination (FRE) on trees.
+-ftree-fre|-fno-tree-fre
+
+# Enable loop distribution for patterns transformed into a library call.
+-ftree-loop-distribute-patterns|-fno-tree-loop-distribute-patterns
+
+# Enable loop distribution on trees.
+-ftree-loop-distribution|-fno-tree-loop-distribution
+
+# Convert conditional jumps in innermost loops to branchless equivalents.
+-ftree-loop-if-convert|-fno-tree-loop-if-convert
+
+# Also if-convert conditional jumps containing memory writes.
+-ftree-loop-if-convert-stores|-fno-tree-loop-if-convert-stores
+
+# Enable loop invariant motion on trees.
+-ftree-loop-im|-fno-tree-loop-im
+
+# Create canonical induction variables in loops.
+-ftree-loop-ivcanon|-fno-tree-loop-ivcanon
+
+# Enable loop optimizations on tree level.
+-ftree-loop-optimize|-fno-tree-loop-optimize
+
+# Enable loop vectorization on trees.
+-ftree-loop-vectorize|-fno-tree-loop-vectorize
+
+# Perform live range splitting during the SSA->normal pass.
+-ftree-lrs|-fno-tree-lrs
+
+# In SSA-PRE optimization on trees, enable partial-partial redundancy elimination.
+-ftree-partial-pre|-fno-tree-partial-pre
+
+# Enable hoisting loads from conditional pointers.
+-ftree-phiprop|-fno-tree-phiprop
+
+# Enable SSA-PRE optimization on trees.
+-ftree-pre|-fno-tree-pre
+
+# Perform function-local points-to analysis on trees.
+-ftree-pta|-fno-tree-pta
+
+# Enable reassociation on tree level.
+-ftree-reassoc|-fno-tree-reassoc
+
+# Enable copy propagation of scalar-evolution information.
+-ftree-scev-cprop|-fno-tree-scev-cprop
+
+# Enable SSA code sinking on trees.
+-ftree-sink|-fno-tree-sink
+
+# Enable basic block vectorization (SLP) on trees.
+-ftree-slp-vectorize|-fno-tree-slp-vectorize
+
+# Perform straight-line strength reduction.
+-ftree-slsr|-fno-tree-slsr
+
+# Perform scalar replacement of aggregates.
+-ftree-sra|-fno-tree-sra
+
+# Perform conversions of switch initializations.
+-ftree-switch-conversion|-fno-tree-switch-conversion
+
+# Enable tail merging on trees.
+-ftree-tail-merge|-fno-tree-tail-merge
+
+# Replace temporary expressions in the SSA->normal pass.
+-ftree-ter|-fno-tree-ter
+
+# Enable vectorization on trees.
+-ftree-vectorize|-fno-tree-vectorize
+
+# Perform Value Range Propagation on trees.
+-ftree-vrp|-fno-tree-vrp
+
+# Assume common declarations may be overridden with ones with a larger trailing array.
+-funconstrained-commons|-fno-unconstrained-commons
+
+# Perform loop unrolling for all loops.
+-funroll-all-loops|-fno-unroll-all-loops
+
+# Perform loop unrolling when iteration count is known.
+-funroll-loops|-fno-unroll-loops
+
+# Allow loop optimizations to assume that the loops behave in normal way.
+-funsafe-loop-optimizations|-fno-unsafe-loop-optimizations
+
+# Allow math optimizations that may violate IEEE or ISO standards.
+-funsafe-math-optimizations|-fno-unsafe-math-optimizations
+
+# Perform loop unswitching.
+-funswitch-loops|-fno-unswitch-loops
+
+# Just generate unwind tables for exception handling.
+-funwind-tables|-fno-unwind-tables
+
+# Perform variable tracking.
+-fvar-tracking|-fno-var-tracking
+
+# Perform variable tracking by annotating assignments.
+-fvar-tracking-assignments|-fno-var-tracking-assignments
+
+# Toggle -fvar-tracking-assignments.|-fno-var-tracking-assignments.
+-fvar-tracking-assignments-toggle
+
+# Perform variable tracking and also tag variables that are uninitialized.
+-fvar-tracking-uninit|-fno-var-tracking-uninit
+
+# Apply variable expansion when loops are unrolled.
+-fvariable-expansion-in-unroller|-fno-variable-expansion-in-unroller
+
+# Use expression value profiles in optimizations.
+-fvpt|-fno-vpt
+
+# Construct webs and split unrelated uses of single variable.
+-fweb|-fno-web
+
+# Assume signed arithmetic overflow wraps around.
+-fwrapv|-fno-wrapv

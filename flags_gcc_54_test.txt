@@ -1,0 +1,1886 @@
+-O2|-O3|-Ofast
+
+# -faggressive-loop-optimizations
+#  Aggressively optimize loops using language constraints
+-faggressive-loop-optimizations|-fno-aggressive-loop-optimizations
+
+# -falign-functions
+#  Align the start of functions
+-falign-functions|-fno-align-functions
+
+# -falign-jumps
+#  Align labels which are only reached by jumping
+-falign-jumps|-fno-align-jumps
+
+# -falign-labels
+#  Align all labels
+-falign-labels|-fno-align-labels
+
+# -falign-loops
+#  Align the start of loops
+-falign-loops|-fno-align-loops
+
+# -fassociative-math
+#  Allow optimization for floating-point arithmetic which may change the 
+#  result of the operation due to rounding.
+-fassociative-math|-fno-associative-math
+
+# -fasynchronous-unwind-tables
+#  Generate unwind tables that are exact at each instruction boundary
+-fasynchronous-unwind-tables|-fno-asynchronous-unwind-tables
+
+# -fauto-inc-dec
+#  Generate auto-inc/dec instructions
+-fauto-inc-dec|-fno-auto-inc-dec
+
+# -fbranch-count-reg
+#  Replace add, compare, branch with branch on count register
+-fbranch-count-reg|-fno-branch-count-reg
+
+# -fbranch-probabilities
+#  Use profiling information for branch probabilities
+-fbranch-probabilities|-fno-branch-probabilities
+
+# -fbranch-target-load-optimize
+#  Perform branch target load optimization before prologue / epilogue 
+#  threading
+-fbranch-target-load-optimize|-fno-branch-target-load-optimize
+
+# -fbranch-target-load-optimize2
+#  Perform branch target load optimization after prologue / epilogue 
+#  threading
+-fbranch-target-load-optimize2|-fno-branch-target-load-optimize2
+
+# -fbtr-bb-exclusive
+#  Restrict target load migration not to re-use registers in any basic 
+#  block
+-fbtr-bb-exclusive|-fno-btr-bb-exclusive
+
+# -fcaller-saves
+#  Save registers around function calls
+-fcaller-saves|-fno-caller-saves
+
+# -fcombine-stack-adjustments
+#  Looks for opportunities to reduce stack adjustments and stack 
+#  references.
+-fcombine-stack-adjustments|-fno-combine-stack-adjustments
+
+# -fcompare-elim
+#  Perform comparison elimination after register allocation has finished
+-fcompare-elim|-fno-compare-elim
+
+# -fconserve-stack
+#  Do not perform optimizations increasing noticeably stack usage
+-fconserve-stack|-fno-conserve-stack
+
+# -fcprop-registers
+#  Perform a register copy-propagation optimization pass
+-fcprop-registers|-fno-cprop-registers
+
+# -fcrossjumping
+#  Perform cross-jumping optimization
+-fcrossjumping|-fno-crossjumping
+
+# -fcse-follow-jumps
+#  When running CSE, follow jumps to their targets
+-fcse-follow-jumps|-fno-cse-follow-jumps
+
+# -fcx-fortran-rules
+#  Complex multiplication and division follow Fortran rules
+-fcx-fortran-rules|-fno-cx-fortran-rules
+
+# -fcx-limited-range
+#  Omit range reduction step when performing complex division
+-fcx-limited-range|-fno-cx-limited-range
+
+# -fdce
+#  Use the RTL dead code elimination pass
+-fdce|-fno-dce
+
+# -fdefer-pop
+#  Defer popping functions args from stack until later
+-fdefer-pop|-fno-defer-pop
+
+# -fdelayed-branch
+#  Attempt to fill delay slots of branch instructions
+-fdelayed-branch|-fno-delayed-branch
+
+# -fdelete-dead-exceptions
+#  Delete dead instructions that may throw exceptions
+-fdelete-dead-exceptions|-fno-delete-dead-exceptions
+
+# -fdelete-null-pointer-checks
+#  Delete useless null pointer checks
+-fdelete-null-pointer-checks|-fno-delete-null-pointer-checks
+
+# -fdevirtualize
+#  Try to convert virtual calls to direct ones.
+-fdevirtualize|-fno-devirtualize
+
+# -fdevirtualize-speculatively
+#  Perform speculative devirtualization
+-fdevirtualize-speculatively|-fno-devirtualize-speculatively
+
+# -fdse
+#  Use the RTL dead store elimination pass
+-fdse|-fno-dse
+
+# -fearly-inlining
+#  Perform early inlining
+-fearly-inlining|-fno-early-inlining
+
+# -fexceptions
+#  Enable exception handling
+-fexceptions|-fno-exceptions
+
+# -fexpensive-optimizations
+#  Perform a number of minor, expensive optimizations
+-fexpensive-optimizations|-fno-expensive-optimizations
+
+# -ffinite-math-only
+#  Assume no NaNs or infinities are generated
+-ffinite-math-only|-fno-finite-math-only
+
+# -ffloat-store
+#  Don't allocate floats and doubles in extended-precision registers
+-ffloat-store|-fno-float-store
+
+# -fforward-propagate
+#  Perform a forward propagation pass on RTL
+-fforward-propagate|-fno-forward-propagate
+
+# -ffp-contract=
+#  -ffp-contract=[off|on|fast] Perform floating-point expression 
+#  contraction.
+-ffp-contract=off|-ffp-contract=on|-ffp-contract=fast
+
+# -ffunction-cse
+#  Allow function addresses to be held in registers
+-ffunction-cse|-fno-function-cse
+
+# -fgcse
+#  Perform global common subexpression elimination
+-fgcse|-fno-gcse
+
+# -fgcse-after-reload
+#  Perform global common subexpression elimination after register 
+#  allocation has finished
+-fgcse-after-reload|-fno-gcse-after-reload
+
+# -fgcse-las
+#  Perform redundant load after store elimination in global common 
+#  subexpression elimination
+-fgcse-las|-fno-gcse-las
+
+# -fgcse-lm
+#  Perform enhanced load motion during global common subexpression 
+#  elimination
+-fgcse-lm|-fno-gcse-lm
+
+# -fgcse-sm
+#  Perform store motion after global common subexpression elimination
+-fgcse-sm|-fno-gcse-sm
+
+# -fgraphite
+#  Enable in and out of Graphite representation
+-fgraphite|-fno-graphite
+
+# -fgraphite-identity
+#  Enable Graphite Identity transformation
+-fgraphite-identity|-fno-graphite-identity
+
+# -fguess-branch-probability
+#  Enable guessing of branch probabilities
+-fguess-branch-probability|-fno-guess-branch-probability
+
+# -fhandle-exceptions
+#  This switch lacks documentation
+-fhandle-exceptions|-fno-handle-exceptions
+
+# -fhoist-adjacent-loads
+#  Enable hoisting adjacent loads to encourage generating conditional 
+#  move instructions
+-fhoist-adjacent-loads|-fno-hoist-adjacent-loads
+
+# -fif-conversion
+#  Perform conversion of conditional jumps to branchless equivalents
+-fif-conversion|-fno-if-conversion
+
+# -fif-conversion2
+#  Perform conversion of conditional jumps to conditional execution
+-fif-conversion2|-fno-if-conversion2
+
+# -findirect-inlining
+#  Perform indirect inlining
+-findirect-inlining|-fno-indirect-inlining
+
+# -finline
+#  Enable inlining of function declared "inline", disabling disables all 
+#  inlining
+-finline|-fno-inline
+
+# -finline-atomics
+#  Inline __atomic operations when a lock free instruction sequence is 
+#  available.
+-finline-atomics|-fno-inline-atomics
+
+# -finline-functions
+#  Integrate functions not declared "inline" into their callers when 
+#  profitable
+-finline-functions|-fno-inline-functions
+
+# -finline-functions-called-once
+#  Integrate functions only required by their single caller
+-finline-functions-called-once|-fno-inline-functions-called-once
+
+# -finline-small-functions
+#  Integrate functions into their callers when code size is known not to 
+#  grow
+-finline-small-functions|-fno-inline-small-functions
+
+# -fipa-cp
+#  Perform interprocedural constant propagation
+-fipa-cp|-fno-ipa-cp
+
+# -fipa-cp-alignment
+#  Perform alignment discovery and propagation to make Interprocedural 
+#  constant propagation stronger
+-fipa-cp-alignment|-fno-ipa-cp-alignment
+
+# -fipa-cp-clone
+#  Perform cloning to make Interprocedural constant propagation stronger
+-fipa-cp-clone|-fno-ipa-cp-clone
+
+# -fipa-icf
+#  Perform Identical Code Folding for functions and read-only variables
+-fipa-icf|-fno-ipa-icf
+
+# -fipa-icf-functions
+#  Perform Identical Code Folding for functions
+-fipa-icf-functions|-fno-ipa-icf-functions
+
+# -fipa-profile
+#  Perform interprocedural profile propagation
+-fipa-profile|-fno-ipa-profile
+
+# -fipa-pta
+#  Perform interprocedural points-to analysis
+-fipa-pta|-fno-ipa-pta
+
+# -fipa-pure-const
+#  Discover pure and const functions
+-fipa-pure-const|-fno-ipa-pure-const
+
+# -fipa-ra
+#  Use caller save register across calls if possible
+-fipa-ra|-fno-ipa-ra
+
+# -fipa-reference
+#  Discover readonly and non addressable static variables
+-fipa-reference|-fno-ipa-reference
+
+# -fipa-sra
+#  Perform interprocedural reduction of aggregates
+-fipa-sra|-fno-ipa-sra
+
+# -fira-algorithm=
+#  -fira-algorithm=[CB|priority] Set the used IRA algorithm
+-fira-algorithm=CB|-fira-algorithm=priority
+
+# -fira-hoist-pressure
+#  Use IRA based register pressure calculation in RTL hoist 
+#  optimizations.
+-fira-hoist-pressure|-fno-ira-hoist-pressure
+
+# -fira-loop-pressure
+#  Use IRA based register pressure calculation in RTL loop optimizations.
+-fira-loop-pressure|-fno-ira-loop-pressure
+
+# -fira-region=
+#  -fira-region=[one|all|mixed] Set regions for IRA
+-fira-region=one|-fira-region=all|-fira-region=mixed
+
+# -fira-share-save-slots
+#  Share slots for saving different hard registers.
+-fira-share-save-slots|-fno-ira-share-save-slots
+
+# -fira-share-spill-slots
+#  Share stack slots for spilled pseudo-registers.
+-fira-share-spill-slots|-fno-ira-share-spill-slots
+
+# -fisolate-erroneous-paths-attribute
+#  Detect paths that trigger erroneous or undefined behavior due a null 
+#  value being used in a way forbidden by a returns_nonnull or nonnull 
+#  attribute. Isolate those paths from
+-fisolate-erroneous-paths-attribute|-fno-isolate-erroneous-paths-attribute
+
+# -fisolate-erroneous-paths-dereference
+#  Detect paths that trigger erroneous or undefined behavior due to 
+#  dereferencing a null pointer. Isolate those paths from the main 
+#  control flow and turn the statement with
+-fisolate-erroneous-paths-dereference|-fno-isolate-erroneous-paths-dereference
+
+# -fivopts
+#  Optimize induction variables on trees
+-fivopts|-fno-ivopts
+
+# -fjump-tables
+#  Use jump tables for sufficiently large switch statements
+-fjump-tables|-fno-jump-tables
+
+# -flifetime-dse
+#  Tell DSE that the storage for a C++ object is dead when the 
+#  constructor starts and when the destructor finishes.
+-flifetime-dse|-fno-lifetime-dse
+
+# -flive-range-shrinkage
+#  Relief of register pressure through live range shrinkage
+-flive-range-shrinkage|-fno-live-range-shrinkage
+
+# -floop-block
+#  Enable Loop Blocking transformation
+-floop-block|-fno-loop-block
+
+# -floop-interchange
+#  Enable Loop Interchange transformation
+-floop-interchange|-fno-loop-interchange
+
+# -floop-nest-optimize
+#  Enable the ISL based loop nest optimizer
+-floop-nest-optimize|-fno-loop-nest-optimize
+
+# -floop-parallelize-all
+#  Mark all loops as parallel
+-floop-parallelize-all|-fno-loop-parallelize-all
+
+# -floop-strip-mine
+#  Enable Loop Strip Mining transformation
+-floop-strip-mine|-fno-loop-strip-mine
+
+# -floop-unroll-and-jam
+#  Enable Loop Unroll Jam transformation
+-floop-unroll-and-jam|-fno-loop-unroll-and-jam
+
+# -flra-remat
+#  Do CFG-sensitive rematerialization in LRA
+-flra-remat|-fno-lra-remat
+
+# -fmath-errno
+#  Set errno after built-in math functions
+-fmath-errno|-fno-math-errno
+
+# -fmodulo-sched
+#  Perform SMS based modulo scheduling before the first scheduling pass
+-fmodulo-sched|-fno-modulo-sched
+
+# -fmodulo-sched-allow-regmoves
+#  Perform SMS based modulo scheduling with register moves allowed
+-fmodulo-sched-allow-regmoves|-fno-modulo-sched-allow-regmoves
+
+# -fmove-loop-invariants
+#  Move loop invariant computations out of loops
+-fmove-loop-invariants|-fno-move-loop-invariants
+
+# -fnon-call-exceptions
+#  Support synchronous non-call exceptions
+-fnon-call-exceptions|-fno-non-call-exceptions
+
+# -fnothrow-opt
+#  Treat a throw() exception specification as noexcept to improve code 
+#  size
+-fnothrow-opt|-fno-nothrow-opt
+
+# -fomit-frame-pointer
+#  When possible do not generate stack frames
+-fomit-frame-pointer|-fno-omit-frame-pointer
+
+# -fopt-info
+#  Enable all optimization info dumps on stderr
+-fopt-info|-fno-opt-info
+
+# -foptimize-sibling-calls
+#  Optimize sibling and tail recursive calls
+-foptimize-sibling-calls|-fno-optimize-sibling-calls
+
+# -foptimize-strlen
+#  Enable string length optimizations on trees
+-foptimize-strlen|-fno-optimize-strlen
+
+# -fpack-struct
+#  Pack structure members together without holes
+-fpack-struct|-fno-pack-struct
+
+# -fpack-struct=<number>
+#  Set initial maximum structure member alignment
+# XXX -fpack-struct=<number>
+
+# -fpartial-inlining
+#  Perform partial inlining
+-fpartial-inlining|-fno-partial-inlining
+
+# -fpeel-loops
+#  Perform loop peeling
+-fpeel-loops|-fno-peel-loops
+
+# -fpeephole
+#  Enable machine specific peephole optimizations
+-fpeephole|-fno-peephole
+
+# -fpeephole2
+#  Enable an RTL peephole pass before sched2
+-fpeephole2|-fno-peephole2
+
+# -fpredictive-commoning
+#  Run predictive commoning optimization.
+-fpredictive-commoning|-fno-predictive-commoning
+
+# -fprefetch-loop-arrays
+#  Generate prefetch instructions, if available, for arrays in loops
+-fprefetch-loop-arrays|-fno-prefetch-loop-arrays
+
+# -freciprocal-math
+#  Same as -fassociative-math for expressions which include division.
+-freciprocal-math|-fno-reciprocal-math
+
+# -freg-struct-return
+#  Return small aggregates in registers
+-freg-struct-return|-fno-reg-struct-return
+
+# -frename-registers
+#  Perform a register renaming optimization pass
+-frename-registers|-fno-rename-registers
+
+# -freorder-blocks
+#  Reorder basic blocks to improve code placement
+-freorder-blocks|-fno-reorder-blocks
+
+# -freorder-blocks-and-partition
+#  Reorder basic blocks and partition into hot and cold sections
+-freorder-blocks-and-partition|-fno-reorder-blocks-and-partition
+
+# -freorder-functions
+#  Reorder functions to improve code placement
+-freorder-functions|-fno-reorder-functions
+
+# -frerun-cse-after-loop
+#  Add a common subexpression elimination pass after loop optimizations
+-frerun-cse-after-loop|-fno-rerun-cse-after-loop
+
+# -freschedule-modulo-scheduled-loops
+#  Enable/Disable the traditional scheduling in loops that already 
+#  passed modulo scheduling
+-freschedule-modulo-scheduled-loops|-fno-reschedule-modulo-scheduled-loops
+
+# -frounding-math
+#  Disable optimizations that assume default FP rounding behavior
+-frounding-math|-fno-rounding-math
+
+# -frtti
+#  Generate run time type descriptor information
+-frtti|-fno-rtti
+
+# -fsched-critical-path-heuristic
+#  Enable the critical path heuristic in the scheduler
+-fsched-critical-path-heuristic|-fno-sched-critical-path-heuristic
+
+# -fsched-dep-count-heuristic
+#  Enable the dependent count heuristic in the scheduler
+-fsched-dep-count-heuristic|-fno-sched-dep-count-heuristic
+
+# -fsched-group-heuristic
+#  Enable the group heuristic in the scheduler
+-fsched-group-heuristic|-fno-sched-group-heuristic
+
+# -fsched-interblock
+#  Enable scheduling across basic blocks
+-fsched-interblock|-fno-sched-interblock
+
+# -fsched-last-insn-heuristic
+#  Enable the last instruction heuristic in the scheduler
+-fsched-last-insn-heuristic|-fno-sched-last-insn-heuristic
+
+# -fsched-pressure
+#  Enable register pressure sensitive insn scheduling
+-fsched-pressure|-fno-sched-pressure
+
+# -fsched-rank-heuristic
+#  Enable the rank heuristic in the scheduler
+-fsched-rank-heuristic|-fno-sched-rank-heuristic
+
+# -fsched-spec
+#  Allow speculative motion of non-loads
+-fsched-spec|-fno-sched-spec
+
+# -fsched-spec-insn-heuristic
+#  Enable the speculative instruction heuristic in the scheduler
+-fsched-spec-insn-heuristic|-fno-sched-spec-insn-heuristic
+
+# -fsched-spec-load
+#  Allow speculative motion of some loads
+-fsched-spec-load|-fno-sched-spec-load
+
+# -fsched-spec-load-dangerous
+#  Allow speculative motion of more loads
+-fsched-spec-load-dangerous|-fno-sched-spec-load-dangerous
+
+# -fsched-stalled-insns
+#  Allow premature scheduling of queued insns
+-fsched-stalled-insns|-fno-sched-stalled-insns
+
+# -fsched-stalled-insns-dep
+#  Set dependence distance checking in premature scheduling of queued 
+#  insns
+-fsched-stalled-insns-dep|-fno-sched-stalled-insns-dep
+
+# -fsched-stalled-insns-dep=<number>
+#  Set dependence distance checking in premature scheduling of queued 
+#  insns
+# XXX -fsched-stalled-insns-dep=<number>
+
+# -fsched-stalled-insns=<number>
+#  Set number of queued insns that can be prematurely scheduled
+# XXX -fsched-stalled-insns=<number>
+
+# -fsched2-use-superblocks
+#  If scheduling post reload, do superblock scheduling
+-fsched2-use-superblocks|-fno-sched2-use-superblocks
+
+# -fschedule-fusion
+#  Perform a target dependent instruction fusion optimization pass
+-fschedule-fusion|-fno-schedule-fusion
+
+# -fschedule-insns
+#  Reschedule instructions before register allocation
+-fschedule-insns|-fno-schedule-insns
+
+# -fschedule-insns2
+#  Reschedule instructions after register allocation
+-fschedule-insns2|-fno-schedule-insns2
+
+# -fsection-anchors
+#  Access data in the same section from shared anchor points
+-fsection-anchors|-fno-section-anchors
+
+# -fsel-sched-pipelining
+#  Perform software pipelining of inner loops during selective scheduling
+-fsel-sched-pipelining|-fno-sel-sched-pipelining
+
+# -fsel-sched-pipelining-outer-loops
+#  Perform software pipelining of outer loops during selective scheduling
+-fsel-sched-pipelining-outer-loops|-fno-sel-sched-pipelining-outer-loops
+
+# -fsel-sched-reschedule-pipelined
+#  Reschedule pipelined regions without pipelining
+-fsel-sched-reschedule-pipelined|-fno-sel-sched-reschedule-pipelined
+
+# -fselective-scheduling
+#  Schedule instructions using selective scheduling algorithm
+-fselective-scheduling|-fno-selective-scheduling
+
+# -fselective-scheduling2
+#  Run selective scheduling after reload
+-fselective-scheduling2|-fno-selective-scheduling2
+
+# -fshrink-wrap
+#  Emit function prologues only before parts of the function that need 
+#  it, rather than at the top of the function.
+-fshrink-wrap|-fno-shrink-wrap
+
+# -fsignaling-nans
+#  Disable optimizations observable by IEEE signaling NaNs
+-fsignaling-nans|-fno-signaling-nans
+
+# -fsigned-zeros
+#  Disable floating point optimizations that ignore the IEEE signedness 
+#  of zero
+-fsigned-zeros|-fno-signed-zeros
+
+# -fsimd-cost-model=
+#  Specifies the vectorization cost model for code marked with a simd 
+#  directive
+# XXX -fsimd-cost-model=
+
+# -fsingle-precision-constant
+#  Convert floating point constants to single precision constants
+-fsingle-precision-constant|-fno-single-precision-constant
+
+# -fsplit-ivs-in-unroller
+#  Split lifetimes of induction variables when loops are unrolled
+-fsplit-ivs-in-unroller|-fno-split-ivs-in-unroller
+
+# -fsplit-wide-types
+#  Split wide types into independent registers
+-fsplit-wide-types|-fno-split-wide-types
+
+# -fssa-phiopt
+#  Optimize conditional patterns using SSA PHI nodes
+-fssa-phiopt|-fno-ssa-phiopt
+
+# -fstack-reuse=
+#  -fstack-reuse=[all|named_vars|none] Set stack reuse level for local 
+#  variables.
+-fstack-reuse=all|-fstack-reuse=named_vars|-fstack-reuse=none
+
+# -fstdarg-opt
+#  Optimize amount of stdarg registers saved to stack at start of 
+#  function
+-fstdarg-opt|-fno-stdarg-opt
+
+# -fstrict-aliasing
+#  Assume strict aliasing rules apply
+-fstrict-aliasing|-fno-strict-aliasing
+
+# -fstrict-enums
+#  Assume that values of enumeration type are always within the minimum 
+#  range of that type
+-fstrict-enums|-fno-strict-enums
+
+# -fstrict-overflow
+#  Treat signed overflow as undefined
+-fstrict-overflow|-fno-strict-overflow
+
+# -fstrict-volatile-bitfields
+#  Force bitfield accesses to match their type width
+-fstrict-volatile-bitfields|-fno-strict-volatile-bitfields
+
+# -fthread-jumps
+#  Perform jump threading optimizations
+-fthread-jumps|-fno-thread-jumps
+
+# -ftracer
+#  Perform superblock formation via tail duplication
+-ftracer|-fno-tracer
+
+# -ftrapping-math
+#  Assume floating-point operations can trap
+-ftrapping-math|-fno-trapping-math
+
+# -ftrapv
+#  Trap for signed overflow in addition, subtraction and multiplication
+-ftrapv|-fno-trapv
+
+# -ftree-bit-ccp
+#  Enable SSA-BIT-CCP optimization on trees
+-ftree-bit-ccp|-fno-tree-bit-ccp
+
+# -ftree-builtin-call-dce
+#  Enable conditional dead code elimination for builtin calls
+-ftree-builtin-call-dce|-fno-tree-builtin-call-dce
+
+# -ftree-ccp
+#  Enable SSA-CCP optimization on trees
+-ftree-ccp|-fno-tree-ccp
+
+# -ftree-ch
+#  Enable loop header copying on trees
+-ftree-ch|-fno-tree-ch
+
+
+# -ftree-coalesce-vars
+#  Enable coalescing of all copy-related user variables
+-ftree-coalesce-vars|-fno-tree-coalesce-vars
+
+# -ftree-copy-prop
+#  Enable copy propagation on trees
+-ftree-copy-prop|-fno-tree-copy-prop
+
+# -ftree-copyrename
+#  Replace SSA temporaries with better names in copies
+-ftree-copyrename|-fno-tree-copyrename
+
+# -ftree-cselim
+#  Transform condition stores into unconditional ones
+-ftree-cselim|-fno-tree-cselim
+
+# -ftree-dce
+#  Enable SSA dead code elimination optimization on trees
+-ftree-dce|-fno-tree-dce
+
+# -ftree-dominator-opts
+#  Enable dominator optimizations
+-ftree-dominator-opts|-fno-tree-dominator-opts
+
+# -ftree-dse
+#  Enable dead store elimination
+-ftree-dse|-fno-tree-dse
+
+# -ftree-forwprop
+#  Enable forward propagation on trees
+-ftree-forwprop|-fno-tree-forwprop
+
+# -ftree-fre
+#  Enable Full Redundancy Elimination (FRE) on trees
+-ftree-fre|-fno-tree-fre
+
+# -ftree-loop-distribute-patterns
+#  Enable loop distribution for patterns transformed into a library call
+-ftree-loop-distribute-patterns|-fno-tree-loop-distribute-patterns
+
+# -ftree-loop-distribution
+#  Enable loop distribution on trees
+-ftree-loop-distribution|-fno-tree-loop-distribution
+
+# -ftree-loop-if-convert
+#  Convert conditional jumps in innermost loops to branchless equivalents
+-ftree-loop-if-convert|-fno-tree-loop-if-convert
+
+# -ftree-loop-if-convert-stores
+#  Also if-convert conditional jumps containing memory writes
+-ftree-loop-if-convert-stores|-fno-tree-loop-if-convert-stores
+
+# -ftree-loop-im
+#  Enable loop invariant motion on trees
+-ftree-loop-im|-fno-tree-loop-im
+
+# -ftree-loop-ivcanon
+#  Create canonical induction variables in loops
+-ftree-loop-ivcanon|-fno-tree-loop-ivcanon
+
+# -ftree-loop-optimize
+#  Enable loop optimizations on tree level
+-ftree-loop-optimize|-fno-tree-loop-optimize
+
+# -ftree-loop-vectorize
+#  Enable loop vectorization on trees
+-ftree-loop-vectorize|-fno-tree-loop-vectorize
+
+# -ftree-lrs
+#  Perform live range splitting during the SSA->normal pass
+-ftree-lrs|-fno-tree-lrs
+
+# -ftree-parallelize-loops=
+#  Enable automatic parallelization of loops
+# XXX -ftree-parallelize-loops=
+
+# -ftree-partial-pre
+#  In SSA-PRE optimization on trees, enable partial-partial redundancy 
+#  elimination
+-ftree-partial-pre|-fno-tree-partial-pre
+
+# -ftree-phiprop
+#  Enable hoisting loads from conditional pointers.
+-ftree-phiprop|-fno-tree-phiprop
+
+# -ftree-pre
+#  Enable SSA-PRE optimization on trees
+-ftree-pre|-fno-tree-pre
+
+# -ftree-pta
+#  Perform function-local points-to analysis on trees.
+-ftree-pta|-fno-tree-pta
+
+# -ftree-reassoc
+#  Enable reassociation on tree level
+-ftree-reassoc|-fno-tree-reassoc
+
+# -ftree-scev-cprop
+#  Enable copy propagation of scalar-evolution information.
+-ftree-scev-cprop|-fno-tree-scev-cprop
+
+# -ftree-sink
+#  Enable SSA code sinking on trees
+-ftree-sink|-fno-tree-sink
+
+# -ftree-slp-vectorize
+#  Enable basic block vectorization (SLP) on trees
+-ftree-slp-vectorize|-fno-tree-slp-vectorize
+
+# -ftree-slsr
+#  Perform straight-line strength reduction
+-ftree-slsr|-fno-tree-slsr
+
+# -ftree-sra
+#  Perform scalar replacement of aggregates
+-ftree-sra|-fno-tree-sra
+
+# -ftree-switch-conversion
+#  Perform conversions of switch initializations.
+-ftree-switch-conversion|-fno-tree-switch-conversion
+
+# -ftree-tail-merge
+#  Enable tail merging on trees
+-ftree-tail-merge|-fno-tree-tail-merge
+
+# -ftree-ter
+#  Replace temporary expressions in the SSA->normal pass
+-ftree-ter|-fno-tree-ter
+
+# -ftree-vectorize
+#  Enable vectorization on trees
+-ftree-vectorize|-fno-tree-vectorize
+
+# -ftree-vrp
+#  Perform Value Range Propagation on trees
+-ftree-vrp|-fno-tree-vrp
+
+# -funroll-all-loops
+#  Perform loop unrolling for all loops
+-funroll-all-loops|-fno-unroll-all-loops
+
+# -funroll-loops
+#  Perform loop unrolling when iteration count is known
+-funroll-loops|-fno-unroll-loops
+
+# -funsafe-loop-optimizations
+#  Allow loop optimizations to assume that the loops behave in normal way
+-funsafe-loop-optimizations|-fno-unsafe-loop-optimizations
+
+# -funsafe-math-optimizations
+#  Allow math optimizations that may violate IEEE or ISO standards
+-funsafe-math-optimizations|-fno-unsafe-math-optimizations
+
+# -funswitch-loops
+#  Perform loop unswitching
+-funswitch-loops|-fno-unswitch-loops
+
+# -funwind-tables
+#  Just generate unwind tables for exception handling
+-funwind-tables|-fno-unwind-tables
+
+# -fvar-tracking
+#  Perform variable tracking
+-fvar-tracking|-fno-var-tracking
+
+# -fvar-tracking-assignments
+#  Perform variable tracking by annotating assignments
+-fvar-tracking-assignments|-fno-var-tracking-assignments
+
+# -fvar-tracking-assignments-toggle
+#  Toggle -fvar-tracking-assignments
+-fvar-tracking-assignments-toggle|-fno-var-tracking-assignments-toggle
+
+# -fvar-tracking-uninit
+#  Perform variable tracking and also tag variables that are 
+#  uninitialized
+-fvar-tracking-uninit|-fno-var-tracking-uninit
+
+# -fvariable-expansion-in-unroller
+#  Apply variable expansion when loops are unrolled
+-fvariable-expansion-in-unroller|-fno-variable-expansion-in-unroller
+
+# -fvect-cost-model=
+#  Specifies the cost model for vectorization
+# XXX -fvect-cost-model=
+
+# -fvpt
+#  Use expression value profiles in optimizations
+-fvpt|-fno-vpt
+
+# -fweb
+#  Construct webs and split unrelated uses of single variable
+-fweb|-fno-web
+
+# -fwrapv
+#  Assume signed arithmetic overflow wraps around
+-fwrapv|-fno-wrapv
+
+# The
+#  --param option recognizes the following as parameters:
+#  
+# XXX --param The
+
+# predictable-branch-outcome
+#  Maximal estimated outcome of branch considered predictable
+#    predictable-branch-outcome  default 2 minimum 0 maximum 50
+--param predictable-branch-outcome=[0..50]
+
+# inline-min-speedup
+#  The minimal estimated speedup allowing inliner to ignore 
+#  inline-insns-single and inline-isnsns-auto
+#    inline-min-speedup          default 10 minimum 0 maximum 0
+--param inline-min-speedup=[2..40]
+
+# max-inline-insns-single
+#  The maximum number of instructions in a single function eligible for 
+#  inlining
+#    max-inline-insns-single     default 400 minimum 0 maximum 0
+--param max-inline-insns-single=[100..1600]
+
+# max-inline-insns-auto
+#  The maximum number of instructions when automatically inlining
+#    max-inline-insns-auto       default 40 minimum 0 maximum 0
+--param max-inline-insns-auto=[10..160]
+
+# max-inline-insns-recursive
+#  The maximum number of instructions inline function can grow to via 
+#  recursive inlining
+#    max-inline-insns-recursive  default 450 minimum 0 maximum 0
+--param max-inline-insns-recursive=[112..1800]
+
+# max-inline-insns-recursive-auto
+#  The maximum number of instructions non-inline function can grow to 
+#  via recursive inlining
+#    max-inline-insns-recursive-auto default 450 minimum 0 maximum 0
+--param max-inline-insns-recursive-auto=[112..1800]
+
+# max-inline-recursive-depth
+#  The maximum depth of recursive inlining for inline functions
+#    max-inline-recursive-depth  default 8 minimum 0 maximum 0
+--param max-inline-recursive-depth=[2..32]
+
+# max-inline-recursive-depth-auto
+#  The maximum depth of recursive inlining for non-inline functions
+#    max-inline-recursive-depth-auto default 8 minimum 0 maximum 0
+--param max-inline-recursive-depth-auto=[2..32]
+
+# min-inline-recursive-probability
+#  Inline recursively only when the probability of call being executed 
+#  exceeds the parameter
+#    min-inline-recursive-probability default 10 minimum 0 maximum 0
+--param min-inline-recursive-probability=[2..40]
+
+# max-early-inliner-iterations
+#  The maximum number of nested indirect inlining performed by early 
+#  inliner
+#    max-early-inliner-iterations default 1 minimum 0 maximum 0
+--param max-early-inliner-iterations=[0..4]
+
+# comdat-sharing-probability
+#  Probability that COMDAT function will be shared with different 
+#  compilation unit
+#    comdat-sharing-probability  default 20 minimum 0 maximum 0
+--param comdat-sharing-probability=[5..80]
+
+# partial-inlining-entry-probability
+#  Maximum probability of the entry BB of split region (in percent 
+#  relative to entry BB of the function) to make partial inlining happen
+#    partial-inlining-entry-probability default 70 minimum 0 maximum 0
+--param partial-inlining-entry-probability=[17..280]
+
+# max-variable-expansions-in-unroller
+#  If -fvariable-expansion-in-unroller is used, the maximum number of 
+#  times that an individual variable will be expanded during loop 
+#  unrolling
+#    max-variable-expansions-in-unroller default 1 minimum 0 maximum 0
+--param max-variable-expansions-in-unroller=[0..4]
+
+# min-vect-loop-bound
+#  If -ftree-vectorize is used, the minimal loop bound of a loop to be 
+#  considered for vectorization
+#    min-vect-loop-bound         default 1 minimum 1 maximum 0
+--param min-vect-loop-bound=[1..5]
+
+# max-delay-slot-insn-search
+#  The maximum number of instructions to consider to fill a delay slot
+#    max-delay-slot-insn-search  default 100 minimum 0 maximum 0
+--param max-delay-slot-insn-search=[25..400]
+
+# max-delay-slot-live-search
+#  The maximum number of instructions to consider to find accurate live 
+#  register information
+#    max-delay-slot-live-search  default 333 minimum 0 maximum 0
+--param max-delay-slot-live-search=[83..1332]
+
+# max-pending-list-length
+#  The maximum length of scheduling's pending operations list
+#    max-pending-list-length     default 32 minimum 0 maximum 0
+--param max-pending-list-length=[8..128]
+
+# max-modulo-backtrack-attempts
+#  The maximum number of backtrack attempts the scheduler should make 
+#  when modulo scheduling a loop
+#    max-modulo-backtrack-attempts default 40 minimum 0 maximum 0
+--param max-modulo-backtrack-attempts=[10..160]
+
+# large-function-insns
+#  The size of function body to be considered large
+#    large-function-insns        default 2700 minimum 0 maximum 0
+--param large-function-insns=[675..10800]
+
+# large-function-growth
+#  Maximal growth due to inlining of large function (in percent)
+#    large-function-growth       default 100 minimum 0 maximum 0
+--param large-function-growth=[25..400]
+
+# large-unit-insns
+#  The size of translation unit to be considered large
+#    large-unit-insns            default 10000 minimum 0 maximum 0
+--param large-unit-insns=[2500..40000]
+
+# inline-unit-growth
+#  How much can given compilation unit grow because of the inlining (in 
+#  percent)
+#    inline-unit-growth          default 20 minimum 0 maximum 0
+--param inline-unit-growth=[5..80]
+
+# ipcp-unit-growth
+#  How much can given compilation unit grow because of the 
+#  interprocedural constant propagation (in percent)
+#    ipcp-unit-growth            default 10 minimum 0 maximum 0
+--param ipcp-unit-growth=[2..40]
+
+# early-inlining-insns
+#  Maximal estimated growth of function body caused by early inlining of 
+#  single call
+#    early-inlining-insns        default 14 minimum 0 maximum 0
+--param early-inlining-insns=[3..56]
+
+# large-stack-frame
+#  The size of stack frame to be considered large
+#    large-stack-frame           default 256 minimum 0 maximum 0
+--param large-stack-frame=[64..1024]
+
+# large-stack-frame-growth
+#  Maximal stack frame growth due to inlining (in percent)
+#    large-stack-frame-growth    default 1000 minimum 0 maximum 0
+--param large-stack-frame-growth=[250..4000]
+
+# max-gcse-memory
+#  The maximum amount of memory to be allocated by GCSE
+#    max-gcse-memory             default 52428800 minimum 0 maximum 0
+--param max-gcse-memory=[13107200..209715200]
+
+# max-gcse-insertion-ratio
+#  The maximum ratio of insertions to deletions of expressions in GCSE
+#    max-gcse-insertion-ratio    default 20 minimum 0 maximum 0
+--param max-gcse-insertion-ratio=[5..80]
+
+# gcse-after-reload-partial-fraction
+#  The threshold ratio for performing partial redundancy elimination 
+#  after reload
+#    gcse-after-reload-partial-fraction default 3 minimum 0 maximum 0
+--param gcse-after-reload-partial-fraction=[0..12]
+
+# gcse-after-reload-critical-fraction
+#  The threshold ratio of critical edges execution count that permit 
+#  performing redundancy elimination after reload
+#    gcse-after-reload-critical-fraction default 10 minimum 0 maximum 0
+--param gcse-after-reload-critical-fraction=[2..40]
+
+# gcse-cost-distance-ratio
+#  Scaling factor in calculation of maximum distance an expression can 
+#  be moved by GCSE optimizations
+#    gcse-cost-distance-ratio    default 10 minimum 0 maximum 0
+--param gcse-cost-distance-ratio=[2..40]
+
+# gcse-unrestricted-cost
+#  Cost at which GCSE optimizations will not constraint the distance an 
+#  expression can travel
+#    gcse-unrestricted-cost      default 3 minimum 0 maximum 0
+--param gcse-unrestricted-cost=[0..12]
+
+# max-hoist-depth
+#  Maximum depth of search in the dominator tree for expressions to hoist
+#    max-hoist-depth             default 30 minimum 0 maximum 0
+--param max-hoist-depth=[7..120]
+
+# max-unrolled-insns
+#  The maximum number of instructions to consider to unroll in a loop
+#    max-unrolled-insns          default 200 minimum 0 maximum 0
+--param max-unrolled-insns=[50..800]
+
+# max-average-unrolled-insns
+#  The maximum number of instructions to consider to unroll in a loop on 
+#  average
+#    max-average-unrolled-insns  default 80 minimum 0 maximum 0
+--param max-average-unrolled-insns=[20..320]
+
+# max-unroll-times
+#  The maximum number of unrollings of a single loop
+#    max-unroll-times            default 8 minimum 0 maximum 0
+--param max-unroll-times=[2..32]
+
+# max-peeled-insns
+#  The maximum number of insns of a peeled loop
+#    max-peeled-insns            default 100 minimum 0 maximum 0
+--param max-peeled-insns=[25..400]
+
+# max-peel-times
+#  The maximum number of peelings of a single loop
+#    max-peel-times              default 16 minimum 0 maximum 0
+--param max-peel-times=[4..64]
+
+# max-peel-branches
+#  The maximum number of branches on the path through the peeled sequence
+#    max-peel-branches           default 32 minimum 0 maximum 0
+--param max-peel-branches=[8..128]
+
+# max-completely-peeled-insns
+#  The maximum number of insns of a completely peeled loop
+#    max-completely-peeled-insns default 200 minimum 0 maximum 0
+--param max-completely-peeled-insns=[50..800]
+
+# max-completely-peel-times
+#  The maximum number of peelings of a single loop that is peeled 
+#  completely
+#    max-completely-peel-times   default 16 minimum 0 maximum 0
+--param max-completely-peel-times=[4..64]
+
+# max-once-peeled-insns
+#  The maximum number of insns of a peeled loop that rolls only once
+#    max-once-peeled-insns       default 400 minimum 0 maximum 0
+--param max-once-peeled-insns=[100..1600]
+
+# max-completely-peel-loop-nest-depth
+#  The maximum depth of a loop nest we completely peel
+#    max-completely-peel-loop-nest-depth default 8 minimum 0 maximum 0
+--param max-completely-peel-loop-nest-depth=[2..32]
+
+# max-unswitch-insns
+#  The maximum number of insns of an unswitched loop
+#    max-unswitch-insns          default 50 minimum 0 maximum 0
+--param max-unswitch-insns=[12..200]
+
+# max-unswitch-level
+#  The maximum number of unswitchings in a single loop
+#    max-unswitch-level          default 3 minimum 0 maximum 0
+--param max-unswitch-level=[0..12]
+
+# max-iterations-to-track
+#  Bound on the number of iterations the brute force # of iterations 
+#  analysis algorithm evaluates
+#    max-iterations-to-track     default 1000 minimum 0 maximum 0
+--param max-iterations-to-track=[250..4000]
+
+# max-iterations-computation-cost
+#  Bound on the cost of an expression to compute the number of iterations
+#    max-iterations-computation-cost default 10 minimum 0 maximum 0
+--param max-iterations-computation-cost=[2..40]
+
+# sms-max-ii-factor
+#  A factor for tuning the upper bound that swing modulo scheduler uses 
+#  for scheduling a loop
+#    sms-max-ii-factor           default 100 minimum 0 maximum 0
+--param sms-max-ii-factor=[25..400]
+
+# sms-min-sc
+#  The minimum value of stage count that swing modulo scheduler will 
+#  generate.
+#    sms-min-sc                  default 2 minimum 1 maximum 1
+--param sms-min-sc=[1..9]
+
+# sms-dfa-history
+#  The number of cycles the swing modulo scheduler considers when 
+#  checking conflicts using DFA
+#    sms-dfa-history             default 0 minimum 0 maximum 0
+# XXX --param sms-dfa-history
+
+# sms-loop-average-count-threshold
+#  A threshold on the average loop count considered by the swing modulo 
+#  scheduler
+#    sms-loop-average-count-threshold default 0 minimum 0 maximum 0
+# XXX --param sms-loop-average-count-threshold
+
+# hot-bb-count-ws-permille
+#  A basic block profile count is considered hot if it contributes to 
+#  the given permillage of the entire profiled execution
+#    hot-bb-count-ws-permille    default 999 minimum 0 maximum 1000
+--param hot-bb-count-ws-permille=[0..1000]
+
+# hot-bb-frequency-fraction
+#  Select fraction of the maximal frequency of executions of basic block 
+#  in function given basic block needs to have to be considered hot
+#    hot-bb-frequency-fraction   default 1000 minimum 0 maximum 0
+--param hot-bb-frequency-fraction=[250..4000]
+
+# unlikely-bb-count-fraction
+#  The minimum fraction of profile runs a given basic block execution 
+#  count must be not to be considered unlikely
+#    unlikely-bb-count-fraction  default 20 minimum 1 maximum 10000
+--param unlikely-bb-count-fraction=[1..10000]
+
+# align-threshold
+#  Select fraction of the maximal frequency of executions of basic block 
+#  in function given basic block get alignment
+#    align-threshold             default 100 minimum 1 maximum 0
+--param align-threshold=[26..401]
+
+# align-loop-iterations
+#  Loops iterating at least selected number of iterations will get loop 
+#  alignement.
+#    align-loop-iterations       default 4 minimum 0 maximum 0
+--param align-loop-iterations=[1..16]
+
+# max-predicted-iterations
+#  The maximum number of loop iterations we predict statically
+#    max-predicted-iterations    default 100 minimum 0 maximum 0
+--param max-predicted-iterations=[25..400]
+
+# builtin-expect-probability
+#  Set the estimated probability in percentage for builtin expect. The 
+#  default value is 90% probability.
+#    builtin-expect-probability  default 90 minimum 0 maximum 100
+--param builtin-expect-probability=[0..100]
+
+# tracer-dynamic-coverage-feedback
+#  The percentage of function, weighted by execution frequency, that 
+#  must be covered by trace formation. Used when profile feedback is 
+#  available
+#    tracer-dynamic-coverage-feedback default 95 minimum 0 maximum 100
+--param tracer-dynamic-coverage-feedback=[0..100]
+
+# tracer-dynamic-coverage
+#  The percentage of function, weighted by execution frequency, that 
+#  must be covered by trace formation. Used when profile feedback is not 
+#  available
+#    tracer-dynamic-coverage     default 75 minimum 0 maximum 100
+--param tracer-dynamic-coverage=[0..100]
+
+# tracer-max-code-growth
+#  Maximal code growth caused by tail duplication (in percent)
+#    tracer-max-code-growth      default 100 minimum 0 maximum 0
+--param tracer-max-code-growth=[25..400]
+
+# tracer-min-branch-ratio
+#  Stop reverse growth if the reverse probability of best edge is less 
+#  than this threshold (in percent)
+#    tracer-min-branch-ratio     default 10 minimum 0 maximum 100
+--param tracer-min-branch-ratio=[0..100]
+
+# tracer-min-branch-probability-feedback
+#  Stop forward growth if the probability of best edge is less than this 
+#  threshold (in percent). Used when profile feedback is available
+#    tracer-min-branch-probability-feedback default 80 minimum 0 maximum 100
+--param tracer-min-branch-probability-feedback=[0..100]
+
+# tracer-min-branch-probability
+#  Stop forward growth if the probability of best edge is less than this 
+#  threshold (in percent). Used when profile feedback is not available
+#    tracer-min-branch-probability default 50 minimum 0 maximum 100
+--param tracer-min-branch-probability=[0..100]
+
+# max-crossjump-edges
+#  The maximum number of incoming edges to consider for crossjumping
+#    max-crossjump-edges         default 100 minimum 0 maximum 0
+--param max-crossjump-edges=[25..400]
+
+# min-crossjump-insns
+#  The minimum number of matching instructions to consider for 
+#  crossjumping
+#    min-crossjump-insns         default 5 minimum 1 maximum 0
+--param min-crossjump-insns=[2..21]
+
+# max-grow-copy-bb-insns
+#  The maximum expansion factor when copying basic blocks
+#    max-grow-copy-bb-insns      default 8 minimum 0 maximum 0
+--param max-grow-copy-bb-insns=[2..32]
+
+# max-goto-duplication-insns
+#  The maximum number of insns to duplicate when unfactoring computed 
+#  gotos
+#    max-goto-duplication-insns  default 8 minimum 0 maximum 0
+--param max-goto-duplication-insns=[2..32]
+
+# max-cse-path-length
+#  The maximum length of path considered in cse
+#    max-cse-path-length         default 10 minimum 1 maximum 0
+--param max-cse-path-length=[3..41]
+
+# max-cse-insns
+#  The maximum instructions CSE process before flushing
+#    max-cse-insns               default 1000 minimum 0 maximum 0
+--param max-cse-insns=[250..4000]
+
+# lim-expensive
+#  The minimum cost of an expensive expression in the loop invariant 
+#  motion
+#    lim-expensive               default 20 minimum 0 maximum 0
+--param lim-expensive=[5..80]
+
+# iv-consider-all-candidates-bound
+#  Bound on number of candidates below that all candidates are 
+#  considered in iv optimizations
+#    iv-consider-all-candidates-bound default 30 minimum 0 maximum 0
+--param iv-consider-all-candidates-bound=[7..120]
+
+# iv-max-considered-uses
+#  Bound on number of iv uses in loop optimized in iv optimizations
+#    iv-max-considered-uses      default 250 minimum 0 maximum 0
+--param iv-max-considered-uses=[62..1000]
+
+# iv-always-prune-cand-set-bound
+#  If number of candidates in the set is smaller, we always try to 
+#  remove unused ivs during its optimization
+#    iv-always-prune-cand-set-bound default 10 minimum 0 maximum 0
+--param iv-always-prune-cand-set-bound=[2..40]
+
+# scev-max-expr-size
+#  Bound on size of expressions used in the scalar evolutions analyzer
+#    scev-max-expr-size          default 100 minimum 0 maximum 0
+--param scev-max-expr-size=[25..400]
+
+# scev-max-expr-complexity
+#  Bound on the complexity of the expressions in the scalar evolutions 
+#  analyzer
+#    scev-max-expr-complexity    default 10 minimum 0 maximum 0
+--param scev-max-expr-complexity=[2..40]
+
+# omega-max-vars
+#  Bound on the number of variables in Omega constraint systems
+#    omega-max-vars              default 128 minimum 0 maximum 0
+--param omega-max-vars=[32..512]
+
+# omega-max-geqs
+#  Bound on the number of inequalities in Omega constraint systems
+#    omega-max-geqs              default 256 minimum 0 maximum 0
+--param omega-max-geqs=[64..1024]
+
+# omega-max-eqs
+#  Bound on the number of equalities in Omega constraint systems
+#    omega-max-eqs               default 128 minimum 0 maximum 0
+--param omega-max-eqs=[32..512]
+
+# omega-max-wild-cards
+#  Bound on the number of wild cards in Omega constraint systems
+#    omega-max-wild-cards        default 18 minimum 0 maximum 0
+--param omega-max-wild-cards=[4..72]
+
+# omega-hash-table-size
+#  Bound on the size of the hash table in Omega constraint systems
+#    omega-hash-table-size       default 550 minimum 0 maximum 0
+--param omega-hash-table-size=[137..2200]
+
+# omega-max-keys
+#  Bound on the number of keys in Omega constraint systems
+#    omega-max-keys              default 500 minimum 0 maximum 0
+--param omega-max-keys=[125..2000]
+
+# omega-eliminate-redundant-constraints
+#  When set to 1, use expensive methods to eliminate all redundant 
+#  constraints
+#    omega-eliminate-redundant-constraints default 0 minimum 0 maximum 1
+--param omega-eliminate-redundant-constraints=[0..1]
+
+# vect-max-version-for-alignment-checks
+#  Bound on number of runtime checks inserted by the vectorizer's loop 
+#  versioning for alignment check
+#    vect-max-version-for-alignment-checks default 6 minimum 0 maximum 0
+--param vect-max-version-for-alignment-checks=[1..24]
+
+# vect-max-version-for-alias-checks
+#  Bound on number of runtime checks inserted by the vectorizer's loop 
+#  versioning for alias check
+#    vect-max-version-for-alias-checks default 10 minimum 0 maximum 0
+--param vect-max-version-for-alias-checks=[2..40]
+
+# vect-max-peeling-for-alignment
+#  Max number of loop peels to enhancement alignment of data references 
+#  in a loop
+#    vect-max-peeling-for-alignment default -1 minimum -1 maximum 64
+# XXX --param vect-max-peeling-for-alignment
+
+# max-cselib-memory-locations
+#  The maximum memory locations recorded by cselib
+#    max-cselib-memory-locations default 500 minimum 0 maximum 0
+--param max-cselib-memory-locations=[125..2000]
+
+# ggc-min-expand
+#  Minimum heap expansion to trigger garbage collection, as a percentage 
+#  of the total size of the heap
+#    ggc-min-expand              default 100 minimum 0 maximum 0
+--param ggc-min-expand=[25..400]
+
+# ggc-min-heapsize
+#  Minimum heap size before we start collecting garbage, in kilobytes
+#    ggc-min-heapsize            default 131072 minimum 0 maximum 0
+--param ggc-min-heapsize=[32768..524288]
+
+# max-reload-search-insns
+#  The maximum number of instructions to search backward when looking 
+#  for equivalent reload
+#    max-reload-search-insns     default 100 minimum 0 maximum 0
+--param max-reload-search-insns=[25..400]
+
+# sink-frequency-threshold
+#  Target block's relative execution frequency (as a percentage) 
+#  required to sink a statement
+#    sink-frequency-threshold    default 75 minimum 0 maximum 100
+--param sink-frequency-threshold=[0..100]
+
+# max-sched-region-blocks
+#  The maximum number of blocks in a region to be considered for 
+#  interblock scheduling
+#    max-sched-region-blocks     default 10 minimum 0 maximum 0
+--param max-sched-region-blocks=[2..40]
+
+# max-sched-region-insns
+#  The maximum number of insns in a region to be considered for 
+#  interblock scheduling
+#    max-sched-region-insns      default 100 minimum 0 maximum 0
+--param max-sched-region-insns=[25..400]
+
+# max-pipeline-region-blocks
+#  The maximum number of blocks in a region to be considered for 
+#  interblock scheduling
+#    max-pipeline-region-blocks  default 15 minimum 0 maximum 0
+--param max-pipeline-region-blocks=[3..60]
+
+# max-pipeline-region-insns
+#  The maximum number of insns in a region to be considered for 
+#  interblock scheduling
+#    max-pipeline-region-insns   default 200 minimum 0 maximum 0
+--param max-pipeline-region-insns=[50..800]
+
+# min-spec-prob
+#  The minimum probability of reaching a source block for interblock 
+#  speculative scheduling
+#    min-spec-prob               default 40 minimum 0 maximum 0
+--param min-spec-prob=[10..160]
+
+# max-sched-extend-regions-iters
+#  The maximum number of iterations through CFG to extend regions
+#    max-sched-extend-regions-iters default 0 minimum 0 maximum 0
+# XXX --param max-sched-extend-regions-iters
+
+# max-sched-insn-conflict-delay
+#  The maximum conflict delay for an insn to be considered for 
+#  speculative motion
+#    max-sched-insn-conflict-delay default 3 minimum 1 maximum 10
+--param max-sched-insn-conflict-delay=[1..10]
+
+# sched-spec-prob-cutoff
+#  The minimal probability of speculation success (in percents), so that 
+#  speculative insn will be scheduled.
+#    sched-spec-prob-cutoff      default 40 minimum 0 maximum 100
+--param sched-spec-prob-cutoff=[0..100]
+
+# sched-state-edge-prob-cutoff
+#  The minimum probability an edge must have for the scheduler to save 
+#  its state across it.
+#    sched-state-edge-prob-cutoff default 10 minimum 0 maximum 100
+--param sched-state-edge-prob-cutoff=[0..100]
+
+# selsched-max-lookahead
+#  The maximum size of the lookahead window of selective scheduling
+#    selsched-max-lookahead      default 50 minimum 0 maximum 0
+--param selsched-max-lookahead=[12..200]
+
+# selsched-max-sched-times
+#  Maximum number of times that an insn could be scheduled
+#    selsched-max-sched-times    default 2 minimum 0 maximum 0
+--param selsched-max-sched-times=[0..8]
+
+# selsched-insns-to-rename
+#  Maximum number of instructions in the ready list that are considered 
+#  eligible for renaming
+#    selsched-insns-to-rename    default 2 minimum 0 maximum 0
+--param selsched-insns-to-rename=[0..8]
+
+# sched-mem-true-dep-cost
+#  Minimal distance between possibly conflicting store and load
+#    sched-mem-true-dep-cost     default 1 minimum 0 maximum 0
+--param sched-mem-true-dep-cost=[0..4]
+
+# sched-autopref-queue-depth
+#  Hardware autoprefetcher scheduler model control flag. Number of 
+#  lookahead cycles the model looks into; at '0' only enable instruction 
+#  sorting heuristic. Disabled by default.
+#    sched-autopref-queue-depth  default -1 minimum 0 maximum 0
+# XXX --param sched-autopref-queue-depth
+
+# max-last-value-rtl
+#  The maximum number of RTL nodes that can be recorded as combiner's 
+#  last value
+#    max-last-value-rtl          default 10000 minimum 0 maximum 0
+--param max-last-value-rtl=[2500..40000]
+
+# max-combine-insns
+#  The maximum number of insns combine tries to combine
+#    max-combine-insns           default 4 minimum 2 maximum 4
+--param max-combine-insns=[2..4]
+
+# integer-share-limit
+#  The upper bound for sharing integer constants
+#    integer-share-limit         default 251 minimum 2 maximum 2
+--param integer-share-limit=[64..1006]
+
+# ssp-buffer-size
+#  The lower bound for a buffer to be considered for stack smashing 
+#  protection
+#    ssp-buffer-size             default 4 minimum 1 maximum 0
+--param ssp-buffer-size=[2..17]
+
+# min-size-for-stack-sharing
+#  The minimum size of variables taking part in stack slot sharing when 
+#  not optimizing
+#    min-size-for-stack-sharing  default 32 minimum 0 maximum 0
+--param min-size-for-stack-sharing=[8..128]
+
+# max-jump-thread-duplication-stmts
+#  Maximum number of statements allowed in a block that needs to be 
+#  duplicated when threading jumps
+#    max-jump-thread-duplication-stmts default 15 minimum 0 maximum 0
+--param max-jump-thread-duplication-stmts=[3..60]
+
+# max-fields-for-field-sensitive
+#  Maximum number of fields in a structure before pointer analysis 
+#  treats the structure as a single variable
+#    max-fields-for-field-sensitive default 0 minimum 0 maximum 0
+# XXX --param max-fields-for-field-sensitive
+
+# max-sched-ready-insns
+#  The maximum number of instructions ready to be issued to be 
+#  considered by the scheduler during the first scheduling pass
+#    max-sched-ready-insns       default 100 minimum 0 maximum 0
+--param max-sched-ready-insns=[25..400]
+
+# max-dse-active-local-stores
+#  Maximum number of active local stores in RTL dead store elimination
+#    max-dse-active-local-stores default 5000 minimum 0 maximum 0
+--param max-dse-active-local-stores=[1250..20000]
+
+# prefetch-latency
+#  The number of insns executed before prefetch is completed
+#    prefetch-latency            default 200 minimum 0 maximum 0
+--param prefetch-latency=[50..800]
+
+# simultaneous-prefetches
+#  The number of prefetches that can run at the same time
+#    simultaneous-prefetches     default 3 minimum 0 maximum 0
+--param simultaneous-prefetches=[0..12]
+
+# l1-cache-size
+#  The size of L1 cache
+#    l1-cache-size               default 64 minimum 0 maximum 0
+--param l1-cache-size=[16..256]
+
+# l1-cache-line-size
+#  The size of L1 cache line
+#    l1-cache-line-size          default 32 minimum 0 maximum 0
+--param l1-cache-line-size=[8..128]
+
+# l2-cache-size
+#  The size of L2 cache
+#    l2-cache-size               default 512 minimum 0 maximum 0
+--param l2-cache-size=[128..2048]
+
+# use-canonical-types
+#  Whether to use canonical types
+#    use-canonical-types         default 1 minimum 0 maximum 1
+--param use-canonical-types=[0..1]
+
+# max-partial-antic-length
+#  Maximum length of partial antic set when performing tree pre 
+#  optimization
+#    max-partial-antic-length    default 100 minimum 0 maximum 0
+--param max-partial-antic-length=[25..400]
+
+# sccvn-max-scc-size
+#  Maximum size of a SCC before SCCVN stops processing a function
+#    sccvn-max-scc-size          default 10000 minimum 10 maximum 0
+--param sccvn-max-scc-size=[2510..40010]
+
+# sccvn-max-alias-queries-per-access
+#  Maximum number of disambiguations to perform per memory access
+#    sccvn-max-alias-queries-per-access default 1000 minimum 0 maximum 0
+--param sccvn-max-alias-queries-per-access=[250..4000]
+
+# ira-max-loops-num
+#  Max loops number for regional RA
+#    ira-max-loops-num           default 100 minimum 0 maximum 0
+--param ira-max-loops-num=[25..400]
+
+# ira-max-conflict-table-size
+#  Max size of conflict table in MB
+#    ira-max-conflict-table-size default 1000 minimum 0 maximum 0
+--param ira-max-conflict-table-size=[250..4000]
+
+# ira-loop-reserved-regs
+#  The number of registers in each class kept unused by loop invariant 
+#  motion
+#    ira-loop-reserved-regs      default 2 minimum 0 maximum 0
+--param ira-loop-reserved-regs=[0..8]
+
+# lra-max-considered-reload-pseudos
+#  The max number of reload pseudos which are considered during spilling 
+#  a non-reload pseudo
+#    lra-max-considered-reload-pseudos default 500 minimum 0 maximum 0
+--param lra-max-considered-reload-pseudos=[125..2000]
+
+# lra-inheritance-ebb-probability-cutoff
+#  Minimal fall-through edge probability in percentage used to add BB to 
+#  inheritance EBB in LRA
+#    lra-inheritance-ebb-probability-cutoff default 40 minimum 0 maximum 100
+--param lra-inheritance-ebb-probability-cutoff=[0..100]
+
+# switch-conversion-max-branch-ratio
+#  The maximum ratio between array size and switch branches for a switch 
+#  conversion to take place
+#    switch-conversion-max-branch-ratio default 8 minimum 1 maximum 0
+--param switch-conversion-max-branch-ratio=[3..33]
+
+# loop-block-tile-size
+#  size of tiles for loop blocking
+#    loop-block-tile-size        default 51 minimum 0 maximum 0
+--param loop-block-tile-size=[12..204]
+
+# loop-unroll-jam-size
+#  size of unrolling factor for unroll-and-jam
+#    loop-unroll-jam-size        default 4 minimum 0 maximum 0
+--param loop-unroll-jam-size=[1..16]
+
+# loop-unroll-jam-depth
+#  depth of unrolled loop for unroll-and-jam
+#    loop-unroll-jam-depth       default 2 minimum 0 maximum 0
+--param loop-unroll-jam-depth=[0..8]
+
+# graphite-max-nb-scop-params
+#  maximum number of parameters in a SCoP
+#    graphite-max-nb-scop-params default 10 minimum 0 maximum 0
+--param graphite-max-nb-scop-params=[2..40]
+
+# graphite-max-bbs-per-function
+#  maximum number of basic blocks per function to be analyzed by Graphite
+#    graphite-max-bbs-per-function default 100 minimum 0 maximum 0
+--param graphite-max-bbs-per-function=[25..400]
+
+# loop-max-datarefs-for-datadeps
+#  Maximum number of datarefs in loop for building loop data dependencies
+#    loop-max-datarefs-for-datadeps default 1000 minimum 0 maximum 0
+--param loop-max-datarefs-for-datadeps=[250..4000]
+
+# loop-invariant-max-bbs-in-loop
+#  Max basic blocks number in loop for loop invariant motion
+#    loop-invariant-max-bbs-in-loop default 10000 minimum 0 maximum 0
+--param loop-invariant-max-bbs-in-loop=[2500..40000]
+
+# profile-func-internal-id
+#  use internal function id in profile lookup
+#    profile-func-internal-id    default 0 minimum 0 maximum 1
+--param profile-func-internal-id=[0..1]
+
+# indir-call-topn-profile
+#  track topn target addresses in indirect-call profile
+#    indir-call-topn-profile     default 0 minimum 0 maximum 1
+--param indir-call-topn-profile=[0..1]
+
+# slp-max-insns-in-bb
+#  Maximum number of instructions in basic block to be considered for 
+#  SLP vectorization
+#    slp-max-insns-in-bb         default 1000 minimum 0 maximum 0
+--param slp-max-insns-in-bb=[250..4000]
+
+# min-insn-to-prefetch-ratio
+#  Min. ratio of insns to prefetches to enable prefetching for a loop 
+#  with an unknown trip count
+#    min-insn-to-prefetch-ratio  default 9 minimum 0 maximum 0
+--param min-insn-to-prefetch-ratio=[2..36]
+
+# prefetch-min-insn-to-mem-ratio
+#  Min. ratio of insns to mem ops to enable prefetching in a loop
+#    prefetch-min-insn-to-mem-ratio default 3 minimum 0 maximum 0
+--param prefetch-min-insn-to-mem-ratio=[0..12]
+
+# max-vartrack-size
+#  Max. size of var tracking hash tables
+#    max-vartrack-size           default 50000000 minimum 0 maximum 0
+--param max-vartrack-size=[12500000..200000000]
+
+# max-vartrack-expr-depth
+#  Max. recursion depth for expanding var tracking expressions
+#    max-vartrack-expr-depth     default 12 minimum 0 maximum 0
+--param max-vartrack-expr-depth=[3..48]
+
+# max-vartrack-reverse-op-size
+#  Max. size of loc list for which reverse ops should be added
+#    max-vartrack-reverse-op-size default 50 minimum 0 maximum 0
+--param max-vartrack-reverse-op-size=[12..200]
+
+# min-nondebug-insn-uid
+#  The minimum UID to be used for a nondebug insn
+#    min-nondebug-insn-uid       default 0 minimum 1 maximum 0
+# XXX --param min-nondebug-insn-uid
+
+# ipa-sra-ptr-growth-factor
+#  Maximum allowed growth of size of new parameters ipa-sra replaces a 
+#  pointer to an aggregate with
+#    ipa-sra-ptr-growth-factor   default 2 minimum 0 maximum 0
+--param ipa-sra-ptr-growth-factor=[0..8]
+
+# tm-max-aggregate-size
+#  Size in bytes after which thread-local aggregates should be 
+#  instrumented with the logging functions instead of save/restore pairs
+#    tm-max-aggregate-size       default 9 minimum 0 maximum 0
+--param tm-max-aggregate-size=[2..36]
+
+# sra-max-scalarization-size-Ospeed
+#  Maximum size, in storage units, of an aggregate which should be 
+#  considered for scalarization when compiling for speed
+#    sra-max-scalarization-size-Ospeed default 0 minimum 0 maximum 0
+# XXX --param sra-max-scalarization-size-Ospeed
+
+# sra-max-scalarization-size-Osize
+#  Maximum size, in storage units, of an aggregate which should be 
+#  considered for scalarization when compiling for size
+#    sra-max-scalarization-size-Osize default 0 minimum 0 maximum 0
+# XXX --param sra-max-scalarization-size-Osize
+
+# ipa-cp-value-list-size
+#  Maximum size of a list of values associated with each parameter for 
+#  interprocedural constant propagation
+#    ipa-cp-value-list-size      default 8 minimum 0 maximum 0
+--param ipa-cp-value-list-size=[2..32]
+
+# ipa-cp-eval-threshold
+#  Threshold ipa-cp opportunity evaluation that is still considered 
+#  beneficial to clone.
+#    ipa-cp-eval-threshold       default 500 minimum 0 maximum 0
+--param ipa-cp-eval-threshold=[125..2000]
+
+# ipa-cp-recursion-penalty
+#  Percentage penalty the recursive functions will receive when they are 
+#  evaluated for cloning.
+#    ipa-cp-recursion-penalty    default 40 minimum 0 maximum 100
+--param ipa-cp-recursion-penalty=[0..100]
+
+# ipa-cp-single-call-penalty
+#  Percentage penalty functions containg a single call to another 
+#  function will receive when they are evaluated for cloning.
+#    ipa-cp-single-call-penalty  default 15 minimum 0 maximum 100
+--param ipa-cp-single-call-penalty=[0..100]
+
+# ipa-max-agg-items
+#  Maximum number of aggregate content items for a parameter in jump 
+#  functions and lattices
+#    ipa-max-agg-items           default 16 minimum 0 maximum 0
+--param ipa-max-agg-items=[4..64]
+
+# ipa-cp-loop-hint-bonus
+#  Compile-time bonus IPA-CP assigns to candidates which make loop 
+#  bounds or strides known.
+#    ipa-cp-loop-hint-bonus      default 64 minimum 0 maximum 0
+--param ipa-cp-loop-hint-bonus=[16..256]
+
+# ipa-cp-array-index-hint-bonus
+#  Compile-time bonus IPA-CP assigns to candidates which make an array 
+#  index known.
+#    ipa-cp-array-index-hint-bonus default 48 minimum 0 maximum 0
+--param ipa-cp-array-index-hint-bonus=[12..192]
+
+# ipa-max-aa-steps
+#  Maximum number of statements that will be visited by IPA formal 
+#  parameter analysis based on alias analysis in any given function
+#    ipa-max-aa-steps            default 25000 minimum 0 maximum 0
+--param ipa-max-aa-steps=[6250..100000]
+
+# lto-partitions
+#  Number of partitions the program should be split to
+#    lto-partitions              default 32 minimum 1 maximum 0
+--param lto-partitions=[9..129]
+
+# lto-min-partition
+#  Minimal size of a partition for LTO (in estimated instructions)
+#    lto-min-partition           default 1000 minimum 0 maximum 0
+--param lto-min-partition=[250..4000]
+
+# cxx-max-namespaces-for-diagnostic-help
+#  Maximum number of namespaces to search for alternatives when name 
+#  lookup fails
+#    cxx-max-namespaces-for-diagnostic-help default 1000 minimum 0 maximum 0
+--param cxx-max-namespaces-for-diagnostic-help=[250..4000]
+
+# max-stores-to-sink
+#  Maximum number of conditional store pairs that can be sunk
+#    max-stores-to-sink          default 2 minimum 0 maximum 0
+--param max-stores-to-sink=[0..8]
+
+# case-values-threshold
+#  The smallest number of different values for which it is best to use a 
+#  jump-table instead of a tree of conditional branches, if 0, use the 
+#  default for the machine
+#    case-values-threshold       default 0 minimum 0 maximum 0
+# XXX --param case-values-threshold
+
+# allow-store-data-races
+#  Allow new data races on stores to be introduced
+#    allow-store-data-races      default 0 minimum 0 maximum 1
+--param allow-store-data-races=[0..1]
+
+# tree-reassoc-width
+#  Set the maximum number of instructions executed in parallel in 
+#  reassociated tree. If 0, use the target dependent heuristic.
+#    tree-reassoc-width          default 0 minimum 0 maximum 0
+# XXX --param tree-reassoc-width
+
+# max-tail-merge-comparisons
+#  Maximum amount of similar bbs to compare a bb with
+#    max-tail-merge-comparisons  default 10 minimum 0 maximum 0
+--param max-tail-merge-comparisons=[2..40]
+
+# max-tail-merge-iterations
+#  Maximum amount of iterations of the pass over a function
+#    max-tail-merge-iterations   default 2 minimum 0 maximum 0
+--param max-tail-merge-iterations=[0..8]
+
+# max-tracked-strlens
+#  Maximum number of strings for which strlen optimization pass will 
+#  track string lengths
+#    max-tracked-strlens         default 10000 minimum 0 maximum 0
+--param max-tracked-strlens=[2500..40000]
+
+# sched-pressure-algorithm
+#  Which -fsched-pressure algorithm to apply
+#    sched-pressure-algorithm    default 1 minimum 1 maximum 2
+--param sched-pressure-algorithm=[1..2]
+
+# max-slsr-cand-scan
+#  Maximum length of candidate scans for straight-line strength reduction
+#    max-slsr-cand-scan          default 50 minimum 1 maximum 999999
+--param max-slsr-cand-scan=[1..999999]
+
+# asan-stack
+#  Enable asan stack protection
+#    asan-stack                  default 1 minimum 0 maximum 1
+--param asan-stack=[0..1]
+
+# asan-globals
+#  Enable asan globals protection
+#    asan-globals                default 1 minimum 0 maximum 1
+--param asan-globals=[0..1]
+
+# asan-instrument-writes
+#  Enable asan store operations protection
+#    asan-instrument-writes      default 1 minimum 0 maximum 1
+--param asan-instrument-writes=[0..1]
+
+# asan-instrument-reads
+#  Enable asan load operations protection
+#    asan-instrument-reads       default 1 minimum 0 maximum 1
+--param asan-instrument-reads=[0..1]
+
+# asan-memintrin
+#  Enable asan builtin functions protection
+#    asan-memintrin              default 1 minimum 0 maximum 1
+--param asan-memintrin=[0..1]
+
+# asan-use-after-return
+#  Enable asan detection of use-after-return bugs
+#    asan-use-after-return       default 1 minimum 0 maximum 1
+--param asan-use-after-return=[0..1]
+
+# asan-instrumentation-with-call-threshold
+#  Use callbacks instead of inline code if number of accesses in 
+#  function becomes greater or equal to this number
+#    asan-instrumentation-with-call-threshold default 7000 minimum 0 maximum
+--param asan-instrumentation-with-call-threshold=[1750..28000]
+
+# uninit-control-dep-attempts
+#  Maximum number of nested calls to search for control dependencies 
+#  during uninitialized variable analysis
+#    uninit-control-dep-attempts default 1000 minimum 1 maximum 0
+--param uninit-control-dep-attempts=[251..4001]
+
+# chkp-max-ctor-size
+#  Maximum number of statements to be included into a single static 
+#  constructor generated by Pointer Bounds Checker
+#    chkp-max-ctor-size          default 5000 minimum 100 maximum 0
+--param chkp-max-ctor-size=[1350..20100]
+
+# max-fsm-thread-path-insns
+#  Maximum number of instructions to copy when duplicating blocks on a 
+#  finite state automaton jump thread path
+#    max-fsm-thread-path-insns   default 100 minimum 1 maximum 999999
+--param max-fsm-thread-path-insns=[1..999999]
+
+# max-fsm-thread-length
+#  Maximum number of basic blocks on a finite state automaton jump 
+#  thread path
+#    max-fsm-thread-length       default 10 minimum 1 maximum 999999
+--param max-fsm-thread-length=[1..999999]
+
+# max-fsm-thread-paths
+#  Maximum number of new jump thread paths to create for a finite state 
+#  automaton
+#    max-fsm-thread-paths        default 50 minimum 1 maximum 999999
+--param max-fsm-thread-paths=[1..999999]
+

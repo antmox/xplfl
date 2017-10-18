@@ -1,0 +1,812 @@
+# -lcr-max-depth (lib/CodeGen/RegAllocGreedy.cpp)
+#   LastChanceRecoloringMaxDepth - Last chance recoloring max depth
+#   unsigned (default: 5)
+-mllvm -lcr-max-depth=[2..10]
+
+# -lcr-max-interf (lib/CodeGen/RegAllocGreedy.cpp)
+#   LastChanceRecoloringMaxInterference - Last chance recoloring maximum
+#   number of considered interference at a time
+#   unsigned (default: 8)
+-mllvm -lcr-max-interf=[4..16]
+
+# -exhaustive-register-search (lib/CodeGen/RegAllocGreedy.cpp)
+#   ExhaustiveSearch - Exhaustive Search for registers bypassing the depth
+#   and interference cutoffs of last chance recoloring
+#   bool (default: )
+-mllvm -exhaustive-register-search=true|-mllvm -exhaustive-register-search=false
+
+# -enable-local-reassign (lib/CodeGen/RegAllocGreedy.cpp)
+#   EnableLocalReassignment - Local reassignment can yield better
+#   allocation decisions, but may be compile time intensive
+#   bool (default: false)
+-mllvm -enable-local-reassign=true|-mllvm -enable-local-reassign=false
+
+# -post-RA-scheduler (lib/CodeGen/PostRASchedulerList.cpp)
+#   EnablePostRAScheduler - Enable scheduling after register allocation
+#   bool (default: false)
+-mllvm -post-RA-scheduler=true|-mllvm -post-RA-scheduler=false
+
+# -break-anti-dependencies (lib/CodeGen/PostRASchedulerList.cpp)
+#   EnableAntiDepBreaking - Break post-RA scheduling anti-dependencies:
+#   \"critical\", \"all\", or \"none\"
+#   std::string (default: "none")
+-mllvm -break-anti-dependencies=critical|-mllvm -break-anti-dependencies=all|-mllvm -break-anti-dependencies=none
+
+# -enable-aa-sched-mi (lib/CodeGen/ScheduleDAGInstrs.cpp)
+#   EnableAASchedMI - Enable use of AA during MI DAG construction
+#   bool (default: false)
+-mllvm -enable-aa-sched-mi=true|-mllvm -enable-aa-sched-mi=false
+
+# -use-tbaa-in-sched-mi (lib/CodeGen/ScheduleDAGInstrs.cpp)
+#   UseTBAA - Enable use of TBAA during MI DAG construction
+#   bool (default: true)
+-mllvm -use-tbaa-in-sched-mi=true|-mllvm -use-tbaa-in-sched-mi=false
+
+# -machine-sink-split (lib/CodeGen/MachineSink.cpp)
+#   SplitEdges - Split critical edges during machine sinking
+#   bool (default: true)
+-mllvm -machine-sink-split=true|-mllvm -machine-sink-split=false
+
+# -machine-sink-bfi (lib/CodeGen/MachineSink.cpp)
+#   UseBlockFreqInfo - Use block frequency info to find successors to sink
+#   bool (default: true)
+-mllvm -machine-sink-bfi=true|-mllvm -machine-sink-bfi=false
+
+# -aggressive-ext-opt (lib/CodeGen/PeepholeOptimizer.cpp)
+#   Aggressive - Aggressive extension optimization
+#   bool (default: )
+-mllvm -aggressive-ext-opt=true|-mllvm -aggressive-ext-opt=false
+
+# -disable-peephole (lib/CodeGen/PeepholeOptimizer.cpp)
+#   DisablePeephole - Disable the peephole optimizer
+#   bool (default: false)
+-mllvm -disable-peephole=true|-mllvm -disable-peephole=false
+
+# -disable-adv-copy-opt (lib/CodeGen/PeepholeOptimizer.cpp)
+#   DisableAdvCopyOpt - Disable advanced copy optimization
+#   bool (default: false)
+-mllvm -disable-adv-copy-opt=true|-mllvm -disable-adv-copy-opt=false
+
+# -enable-patchpoint-liveness (lib/CodeGen/StackMapLivenessAnalysis.cpp)
+#   EnablePatchPointLiveness - Enable PatchPoint Liveness Analysis Pass
+#   bool (default: true)
+-mllvm -enable-patchpoint-liveness=true|-mllvm -enable-patchpoint-liveness=false
+
+# -disable-post-ra (lib/CodeGen/Passes.cpp)
+#   DisablePostRA - Disable Post Regalloc
+#   bool (default: )
+-mllvm -disable-post-ra=true|-mllvm -disable-post-ra=false
+
+# -disable-branch-fold (lib/CodeGen/Passes.cpp)
+#   DisableBranchFold - Disable branch folding
+#   bool (default: )
+-mllvm -disable-branch-fold=true|-mllvm -disable-branch-fold=false
+
+# -disable-tail-duplicate (lib/CodeGen/Passes.cpp)
+#   DisableTailDuplicate - Disable tail duplication
+#   bool (default: )
+-mllvm -disable-tail-duplicate=true|-mllvm -disable-tail-duplicate=false
+
+# -disable-early-taildup (lib/CodeGen/Passes.cpp)
+#   DisableEarlyTailDup - Disable pre-register allocation tail duplication
+#   bool (default: )
+-mllvm -disable-early-taildup=true|-mllvm -disable-early-taildup=false
+
+# -disable-ssc (lib/CodeGen/Passes.cpp)
+#   DisableSSC - Disable Stack Slot Coloring
+#   bool (default: )
+-mllvm -disable-ssc=true|-mllvm -disable-ssc=false
+
+# -disable-machine-dce (lib/CodeGen/Passes.cpp)
+#   DisableMachineDCE - Disable Machine Dead Code Elimination
+#   bool (default: )
+-mllvm -disable-machine-dce=true|-mllvm -disable-machine-dce=false
+
+# -disable-early-ifcvt (lib/CodeGen/Passes.cpp)
+#   DisableEarlyIfConversion - Disable Early If-conversion
+#   bool (default: )
+-mllvm -disable-early-ifcvt=true|-mllvm -disable-early-ifcvt=false
+
+# -disable-machine-licm (lib/CodeGen/Passes.cpp)
+#   DisableMachineLICM - Disable Machine LICM
+#   bool (default: )
+-mllvm -disable-machine-licm=true|-mllvm -disable-machine-licm=false
+
+# -disable-machine-cse (lib/CodeGen/Passes.cpp)
+#   DisableMachineCSE - Disable Machine Common Subexpression Elimination
+#   bool (default: )
+-mllvm -disable-machine-cse=true|-mllvm -disable-machine-cse=false
+
+# -enable-misched (lib/CodeGen/Passes.cpp)
+#   EnableMachineSched - Enable the machine instruction scheduling pass.
+#   cl::boolOrDefault (default: )
+-mllvm -enable-misched=true|-mllvm -enable-misched=false
+
+# -disable-postra-machine-licm (lib/CodeGen/Passes.cpp)
+#   DisablePostRAMachineLICM - Disable Machine LICM
+#   bool (default: )
+-mllvm -disable-postra-machine-licm=true|-mllvm -disable-postra-machine-licm=false
+
+# -disable-machine-sink (lib/CodeGen/Passes.cpp)
+#   DisableMachineSink - Disable Machine Sinking
+#   bool (default: )
+-mllvm -disable-machine-sink=true|-mllvm -disable-machine-sink=false
+
+# -disable-lsr (lib/CodeGen/Passes.cpp)
+#   DisableLSR - Disable Loop Strength Reduction Pass
+#   bool (default: )
+-mllvm -disable-lsr=true|-mllvm -disable-lsr=false
+
+# -disable-constant-hoisting (lib/CodeGen/Passes.cpp)
+#   DisableConstantHoisting - Disable ConstantHoisting
+#   bool (default: )
+-mllvm -disable-constant-hoisting=true|-mllvm -disable-constant-hoisting=false
+
+# -disable-copyprop (lib/CodeGen/Passes.cpp)
+#   DisableCopyProp - Disable Copy Propagation pass
+#   bool (default: )
+-mllvm -disable-copyprop=true|-mllvm -disable-copyprop=false
+
+# -disable-partial-libcall-inlining (lib/CodeGen/Passes.cpp)
+#   DisablePartialLibcallInlining - Disable Partial Libcall Inlining
+#   bool (default: )
+-mllvm -disable-partial-libcall-inlining=true|-mllvm -disable-partial-libcall-inlining=false
+
+# -misched-postra (lib/CodeGen/Passes.cpp)
+#   MISchedPostRA - Run MachineScheduler post regalloc
+#   bool (default: )
+-mllvm -misched-postra=true|-mllvm -misched-postra=false
+
+# -early-live-intervals (lib/CodeGen/Passes.cpp)
+#   EarlyLiveIntervals - Run live interval analysis earlier in the pipeline
+#   bool (default: )
+-mllvm -early-live-intervals=true|-mllvm -early-live-intervals=false
+
+# -use-cfl-aa-in-codegen (lib/CodeGen/Passes.cpp)
+#   UseCFLAA - Enable the new, experimental CFL alias analysis in CodeGen
+#   bool (default: false)
+-mllvm -use-cfl-aa-in-codegen=true|-mllvm -use-cfl-aa-in-codegen=false
+
+# -tail-dup-size (lib/CodeGen/TailDuplication.cpp)
+#   TailDuplicateSize - Maximum instructions to consider tail duplicating
+#   unsigned (default: 2)
+-mllvm -tail-dup-size=[1..5]
+
+# -join-splitedges (lib/CodeGen/RegisterCoalescer.cpp)
+#   EnableJoinSplits - Coalesce copies on split edges (default=subtarge
+#   bool (default: )
+-mllvm -join-splitedges=true|-mllvm -join-splitedges=false
+
+# -join-globalcopies (lib/CodeGen/RegisterCoalescer.cpp)
+#   EnableGlobalCopies - Coalesce copies that span blocks
+#   cl::boolOrDefault (default: cl::BOU_UNSET)
+-mllvm -join-globalcopies=true|-mllvm -join-globalcopies=false
+
+# -enable-subreg-liveness (lib/CodeGen/LiveIntervalAnalysis.cpp)
+#   EnableSubRegLiveness - Enable subregister liveness tracking.
+#   bool (default: true)
+-mllvm -enable-subreg-liveness=true|-mllvm -enable-subreg-liveness=false
+
+# -disable-cgp-branch-opts (lib/CodeGen/CodeGenPrepare.cpp)
+#   DisableBranchOpts - Disable branch optimizations in CodeGenPrepare
+#   bool (default: false)
+-mllvm -disable-cgp-branch-opts=true|-mllvm -disable-cgp-branch-opts=false
+
+# -addr-sink-using-gep (lib/CodeGen/CodeGenPrepare.cpp)
+#   AddrSinkUsingGEPs - Address sinking in CGP using GEPs.
+#   bool (default: false)
+-mllvm -addr-sink-using-gep=true|-mllvm -addr-sink-using-gep=false
+
+# -enable-andcmp-sinking (lib/CodeGen/CodeGenPrepare.cpp)
+#   EnableAndCmpSinking - Enable sinkinig and/cmp into branches.
+#   bool (default: true)
+-mllvm -enable-andcmp-sinking=true|-mllvm -enable-andcmp-sinking=false
+
+# -disable-cgp-store-extract (lib/CodeGen/CodeGenPrepare.cpp)
+#   DisableStoreExtract - Disable store(extrac
+#   bool (default: false)
+-mllvm -disable-cgp-store-extract=true|-mllvm -disable-cgp-store-extract=false
+
+# -disable-cgp-ext-ld-promotion (lib/CodeGen/CodeGenPrepare.cpp)
+#   promoted - Disable ext(promotable(l
+#   bool (default: false)
+-mllvm -disable-cgp-ext-ld-promotion=true|-mllvm -disable-cgp-ext-ld-promotion=false
+
+# -no-stack-slot-sharing (lib/CodeGen/StackSlotColoring.cpp)
+#   DisableSharing - Suppress slot sharing during stack coloring
+#   bool (default: false)
+-mllvm -no-stack-slot-sharing=true|-mllvm -no-stack-slot-sharing=false
+
+# -disable-spill-hoist (lib/CodeGen/InlineSpiller.cpp)
+#   DisableHoisting - Disable inline spill hoisting
+#   bool (default: )
+-mllvm -disable-spill-hoist=true|-mllvm -disable-spill-hoist=false
+
+# -avoid-speculation (lib/CodeGen/MachineLICM.cpp)
+#   AvoidSpeculation - MachineLICM should avoid speculation
+#   bool (default: true)
+-mllvm -avoid-speculation=true|-mllvm -avoid-speculation=false
+
+# -hoist-cheap-insts (lib/CodeGen/MachineLICM.cpp)
+#   HoistCheapInsts - MachineLICM should hoist even cheap instructions
+#   bool (default: false)
+-mllvm -hoist-cheap-insts=true|-mllvm -hoist-cheap-insts=false
+
+# -fast-isel (lib/CodeGen/LLVMTargetMachine.cpp)
+#   EnableFastISelOption - Enable the \"fast\" instruction selector
+#   cl::boolOrDefault (default: )
+-mllvm -fast-isel=true|-mllvm -fast-isel=false
+
+# -disable-phi-elim-edge-splitting (lib/CodeGen/PHIElimination.cpp)
+#   DisableEdgeSplitting - Disable critical edge splitting during PHI
+#   elimination
+#   bool (default: false)
+-mllvm -disable-phi-elim-edge-splitting=true|-mllvm -disable-phi-elim-edge-splitting=false
+
+# -early-ifcvt-limit (lib/CodeGen/EarlyIfConversion.cpp)
+#   BlockInstrLimit - Maximum number of instructions per speculated block.
+#   unsigned (default: 30)
+-mllvm -early-ifcvt-limit=[5..100]
+
+# -schedmodel (lib/CodeGen/TargetSchedule.cpp)
+#   EnableSchedModel - Use TargetSchedModel for latency lookup
+#   bool (default: true)
+-mllvm -schedmodel=true|-mllvm -schedmodel=false
+
+# -scheditins (lib/CodeGen/TargetSchedule.cpp)
+#   EnableSchedItins - Use InstrItineraryData for latency lookup
+#   bool (default: true)
+-mllvm -scheditins=true|-mllvm -scheditins=false
+
+# -ifcvt-limit (lib/CodeGen/IfConversion.cpp)
+#   IfCvtLimit - 
+#   int (default: -1)
+-mllvm -ifcvt-limit=[-1..10]
+
+# -disable-ifcvt-simple (lib/CodeGen/IfConversion.cpp)
+#   DisableSimple - 
+#   bool (default: false)
+-mllvm -disable-ifcvt-simple=true|-mllvm -disable-ifcvt-simple=false
+
+# -disable-ifcvt-simple-false (lib/CodeGen/IfConversion.cpp)
+#   DisableSimpleF - 
+#   bool (default: false)
+-mllvm -disable-ifcvt-simple-false=true|-mllvm -disable-ifcvt-simple-false=false
+
+# -disable-ifcvt-triangle (lib/CodeGen/IfConversion.cpp)
+#   DisableTriangle - 
+#   bool (default: false)
+-mllvm -disable-ifcvt-triangle=true|-mllvm -disable-ifcvt-triangle=false
+
+# -disable-ifcvt-triangle-rev (lib/CodeGen/IfConversion.cpp)
+#   DisableTriangleR - 
+#   bool (default: false)
+-mllvm -disable-ifcvt-triangle-rev=true|-mllvm -disable-ifcvt-triangle-rev=false
+
+# -disable-ifcvt-triangle-false (lib/CodeGen/IfConversion.cpp)
+#   DisableTriangleF - 
+#   bool (default: false)
+-mllvm -disable-ifcvt-triangle-false=true|-mllvm -disable-ifcvt-triangle-false=false
+
+# -disable-ifcvt-triangle-false-rev (lib/CodeGen/IfConversion.cpp)
+#   DisableTriangleFR - 
+#   bool (default: false)
+-mllvm -disable-ifcvt-triangle-false-rev=true|-mllvm -disable-ifcvt-triangle-false-rev=false
+
+# -disable-ifcvt-diamond (lib/CodeGen/IfConversion.cpp)
+#   DisableDiamond - 
+#   bool (default: false)
+-mllvm -disable-ifcvt-diamond=true|-mllvm -disable-ifcvt-diamond=false
+
+# -ifcvt-branch-fold (lib/CodeGen/IfConversion.cpp)
+#   IfCvtBranchFold - 
+#   bool (default: true)
+-mllvm -ifcvt-branch-fold=true|-mllvm -ifcvt-branch-fold=false
+
+# -misched-bottomup (lib/CodeGen/MachineScheduler.cpp)
+#   ForceBottomUp - Force bottom-up list scheduling
+#   bool (default: )
+-mllvm -misched-bottomup=true|-mllvm -misched-bottomup=false
+
+# -misched-regpressure (lib/CodeGen/MachineScheduler.cpp)
+#   EnableRegPressure - Enable register pressure scheduling.
+#   bool (default: true)
+-mllvm -misched-regpressure=true|-mllvm -misched-regpressure=false
+
+# -misched-cyclicpath (lib/CodeGen/MachineScheduler.cpp)
+#   EnableCyclicPath - Enable cyclic critical path analysis.
+#   bool (default: true)
+-mllvm -misched-cyclicpath=true|-mllvm -misched-cyclicpath=false
+
+# -misched-cluster (lib/CodeGen/MachineScheduler.cpp)
+#   EnableLoadCluster - Enable load clustering.
+#   bool (default: true)
+-mllvm -misched-cluster=true|-mllvm -misched-cluster=false
+
+# -misched-fusion (lib/CodeGen/MachineScheduler.cpp)
+#   EnableMacroFusion - Enable scheduling for macro fusion.
+#   bool (default: true)
+-mllvm -misched-fusion=true|-mllvm -misched-fusion=false
+
+# -misched (lib/CodeGen/MachineScheduler.cpp)
+#   MachineSchedOpt - Machine instruction scheduler to use
+#   ScheduleDAGCtor (default: &useDefaultMachineSched)
+-mllvm -misched=default|-mllvm -misched=converge|-mllvm -misched=ilpmax|-mllvm -misched=ilpmin
+
+# -twoaddr-reschedule (lib/CodeGen/TwoAddressInstructionPass.cpp)
+#   EnableRescheduling - Coalesce copies by rescheduling
+#   bool (default: true)
+-mllvm -twoaddr-reschedule=true|-mllvm -twoaddr-reschedule=false
+
+# -no-stack-coloring (lib/CodeGen/StackColoring.cpp)
+#   DisableColoring - Disable stack coloring
+#   bool (default: false)
+-mllvm -no-stack-coloring=true|-mllvm -no-stack-coloring=false
+
+# -protect-from-escaped-allocas (lib/CodeGen/StackColoring.cpp)
+#   ProtectFromEscapedAllocas - Do not optimize lifetime zones that are
+#   broken
+#   bool (default: false)
+-mllvm -protect-from-escaped-allocas=true|-mllvm -protect-from-escaped-allocas=false
+
+# -enable-tail-merge (lib/CodeGen/BranchFolding.cpp)
+#   FlagEnableTailMerge - 
+#   cl::boolOrDefault (default: cl::BOU_UNSET)
+-mllvm -enable-tail-merge=true|-mllvm -enable-tail-merge=false
+
+# -tail-merge-threshold (lib/CodeGen/BranchFolding.cpp)
+#   TailMergeThreshold - Max number of predecessors to consider tail
+#   merging
+#   unsigned (default: 150)
+-mllvm -tail-merge-threshold=[50..500]
+
+# -tail-merge-size (lib/CodeGen/BranchFolding.cpp)
+#   TailMergeSize - Min number of instructions to consider tail merging
+#   unsigned (default: 3)
+-mllvm -tail-merge-size=[1..8]
+
+# -extended-hoisting (lib/CodeGen/BranchFolding.cpp)
+#   ExtendedCommonCodeHoisting - Extended hoisting of common code in
+#   successors
+#   bool (default: false)
+-mllvm -extended-hoisting=true|-mllvm -extended-hoisting=false
+
+# -disable-sched-hazard (lib/CodeGen/TargetInstrInfo.cpp)
+#   DisableHazardRecognizer - Disable hazard detection during preRA
+#   scheduling
+#   bool (default: false)
+-mllvm -disable-sched-hazard=true|-mllvm -disable-sched-hazard=false
+
+# -combiner-alias-analysis (lib/CodeGen/SelectionDAG/DAGCombiner.cpp)
+#   CombinerAA - Enable DAG combiner alias-analysis heuristics
+#   bool (default: )
+-mllvm -combiner-alias-analysis=true|-mllvm -combiner-alias-analysis=false
+
+# -combiner-global-alias-analysis (lib/CodeGen/SelectionDAG/DAGCombiner.cpp)
+#   CombinerGlobalAA - Enable DAG combiner's use of IR alias analysis
+#   bool (default: )
+-mllvm -combiner-global-alias-analysis=true|-mllvm -combiner-global-alias-analysis=false
+
+# -combiner-use-tbaa (lib/CodeGen/SelectionDAG/DAGCombiner.cpp)
+#   UseTBAA - Enable DAG combiner's use of TBAA
+#   bool (default: true)
+-mllvm -combiner-use-tbaa=true|-mllvm -combiner-use-tbaa=false
+
+# -combiner-split-load-index (lib/CodeGen/SelectionDAG/DAGCombiner.cpp)
+#   MaySplitLoadIndex - DAG combiner may split indexing from loads
+#   bool (default: true)
+-mllvm -combiner-split-load-index=true|-mllvm -combiner-split-load-index=false
+
+# -sched-high-latency-cycles (lib/CodeGen/SelectionDAG/ScheduleDAGSDNodes.cpp)
+#   HighLatencyCycles - Roughly estimate the number of cycles that long
+#   latency instructions take for targets with no itinerary
+#   int (default: 10)
+-mllvm -sched-high-latency-cycles=[5..20]
+
+# -disable-dfa-sched (lib/CodeGen/SelectionDAG/ResourcePriorityQueue.cpp)
+#   DisableDFASched - Disable use of DFA during scheduling
+#   bool (default: false)
+-mllvm -disable-dfa-sched=true|-mllvm -disable-dfa-sched=false
+
+# -dfa-sched-reg-pressure-threshold (lib/CodeGen/SelectionDAG/ResourcePriorityQueue.cpp)
+#   RegPressureThreshold - Track reg pressure and switch priority to
+#   in-depth
+#   signed (default: 5)
+-mllvm -dfa-sched-reg-pressure-threshold=[1..20]
+
+# -use-mbpi (lib/CodeGen/SelectionDAG/SelectionDAGISel.cpp)
+#   UseMBPI - use Machine Branch Probability Info
+#   bool (default: true)
+-mllvm -use-mbpi=true|-mllvm -use-mbpi=false
+
+# -disable-sched-cycles (lib/CodeGen/SelectionDAG/ScheduleDAGRRList.cpp)
+#   DisableSchedCycles - Disable cycle-level precision during preRA
+#   scheduling
+#   bool (default: false)
+-mllvm -disable-sched-cycles=true|-mllvm -disable-sched-cycles=false
+
+# -disable-sched-reg-pressure (lib/CodeGen/SelectionDAG/ScheduleDAGRRList.cpp)
+#   DisableSchedRegPressure - Disable regpressure priority in
+#   sched=list-ilp
+#   bool (default: false)
+-mllvm -disable-sched-reg-pressure=true|-mllvm -disable-sched-reg-pressure=false
+
+# -disable-sched-live-uses (lib/CodeGen/SelectionDAG/ScheduleDAGRRList.cpp)
+#   DisableSchedLiveUses - Disable live use priority in sched=list-ilp
+#   bool (default: true)
+-mllvm -disable-sched-live-uses=true|-mllvm -disable-sched-live-uses=false
+
+# -disable-sched-vrcycle (lib/CodeGen/SelectionDAG/ScheduleDAGRRList.cpp)
+#   DisableSchedVRegCycle - Disable virtual register cycle interference
+#   checks
+#   bool (default: false)
+-mllvm -disable-sched-vrcycle=true|-mllvm -disable-sched-vrcycle=false
+
+# -disable-sched-physreg-join (lib/CodeGen/SelectionDAG/ScheduleDAGRRList.cpp)
+#   DisableSchedPhysRegJoin - Disable physreg def-use affinity
+#   bool (default: false)
+-mllvm -disable-sched-physreg-join=true|-mllvm -disable-sched-physreg-join=false
+
+# -disable-sched-stalls (lib/CodeGen/SelectionDAG/ScheduleDAGRRList.cpp)
+#   DisableSchedStalls - Disable no-stall priority in sched=list-ilp
+#   bool (default: true)
+-mllvm -disable-sched-stalls=true|-mllvm -disable-sched-stalls=false
+
+# -disable-sched-critical-path (lib/CodeGen/SelectionDAG/ScheduleDAGRRList.cpp)
+#   DisableSchedCriticalPath - Disable critical path priority in
+#   sched=list-ilp
+#   bool (default: false)
+-mllvm -disable-sched-critical-path=true|-mllvm -disable-sched-critical-path=false
+
+# -disable-sched-height (lib/CodeGen/SelectionDAG/ScheduleDAGRRList.cpp)
+#   DisableSchedHeight - Disable scheduled-height priority in sched=list-ilp
+#   bool (default: false)
+-mllvm -disable-sched-height=true|-mllvm -disable-sched-height=false
+
+# -disable-2addr-hack (lib/CodeGen/SelectionDAG/ScheduleDAGRRList.cpp)
+#   Disable2AddrHack - Disable scheduler's two-address hack
+#   bool (default: true)
+-mllvm -disable-2addr-hack=true|-mllvm -disable-2addr-hack=false
+
+# -max-sched-reorder (lib/CodeGen/SelectionDAG/ScheduleDAGRRList.cpp)
+#   MaxReorderWindow - Number of instructions to allow ahead of the
+#   critical path in sched=list-ilp
+#   int (default: 6)
+-mllvm -max-sched-reorder=[2..12]
+
+# -sched-avg-ipc (lib/CodeGen/SelectionDAG/ScheduleDAGRRList.cpp)
+#   AvgIPC - Average inst/cycle whan no target itinerary exists.
+#   unsigned (default: 1)
+-mllvm -sched-avg-ipc=[1..4]
+
+# -phi-node-folding-threshold (lib/Transforms/Utils/SimplifyCFG.cpp)
+#   PHINodeFoldingThreshold - Control the amount of phi node folding to
+#   perform
+#   unsigned (default: 1)
+-mllvm -phi-node-folding-threshold=[0..4]
+
+# -simplifycfg-dup-ret (lib/Transforms/Utils/SimplifyCFG.cpp)
+#   DupRet - Duplicate return instructions into unconditional branches
+#   bool (default: false)
+-mllvm -simplifycfg-dup-ret=true|-mllvm -simplifycfg-dup-ret=false
+
+# -simplifycfg-sink-common (lib/Transforms/Utils/SimplifyCFG.cpp)
+#   SinkCommon - Sink common instructions down to the end block
+#   bool (default: true)
+-mllvm -simplifycfg-sink-common=true|-mllvm -simplifycfg-sink-common=false
+
+# -simplifycfg-hoist-cond-stores (lib/Transforms/Utils/SimplifyCFG.cpp)
+#   HoistCondStores - Hoist conditional stores if an unconditional store
+#   precedes
+#   bool (default: true)
+-mllvm -simplifycfg-hoist-cond-stores=true|-mllvm -simplifycfg-hoist-cond-stores=false
+
+# -error-reporting-is-cold (lib/Transforms/Utils/SimplifyLibCalls.cpp)
+#   ColdErrorCalls - Treat error-reporting calls as cold
+#   bool (default: true)
+-mllvm -error-reporting-is-cold=true|-mllvm -error-reporting-is-cold=false
+
+# -enable-double-float-shrink (lib/Transforms/Utils/SimplifyLibCalls.cpp)
+#   EnableUnsafeFPShrink - Enable unsafe double to float shrinking for math
+#   lib calls
+#   bool (default: false)
+-mllvm -enable-double-float-shrink=true|-mllvm -enable-double-float-shrink=false
+
+# -aggregate-extracted-args (lib/Transforms/Utils/CodeExtractor.cpp)
+#   AggregateArgsOpt - Aggregate arguments to code-extracted functions
+#   bool (default: )
+-mllvm -aggregate-extracted-args=true|-mllvm -aggregate-extracted-args=false
+
+# -likely-branch-weight (lib/Transforms/Utils/LowerExpectIntrinsic.cpp)
+#   LikelyBranchWeight - Weight of the branch likely to be taken
+#   uint32_t (default: 64)
+-mllvm -likely-branch-weight=[50..100]
+
+# -unlikely-branch-weight (lib/Transforms/Utils/LowerExpectIntrinsic.cpp)
+#   UnlikelyBranchWeight - Weight of the branch unlikely to be taken
+#   uint32_t (default: 4)
+-mllvm -unlikely-branch-weight=[1..35]
+
+# -enable-noalias-to-md-conversion (lib/Transforms/Utils/InlineFunction.cpp)
+#   EnableNoAliasConversion - Convert noalias attributes to metadata
+#   during inlining.
+#   bool (default: true)
+-mllvm -enable-noalias-to-md-conversion=true|-mllvm -enable-noalias-to-md-conversion=false
+
+# -preserve-alignment-assumptions-during-inlining (lib/Transforms/Utils/InlineFunction.cpp)
+#   PreserveAlignmentAssumptions - Convert align attributes to assumptions
+#   during inlining.
+#   bool (default: true)
+-mllvm -preserve-alignment-assumptions-during-inlining=true|-mllvm -preserve-alignment-assumptions-during-inlining=false
+
+# -loop-unswitch-threshold (lib/Transforms/Scalar/LoopUnswitch.cpp)
+#   Threshold - Max loop size to unswitch
+#   unsigned (default: 100)
+-mllvm -loop-unswitch-threshold=[25..400]
+
+# -disable-licm-promotion (lib/Transforms/Scalar/LICM.cpp)
+#   DisablePromotion - Disable memory promotion in LICM pass
+#   bool (default: )
+-mllvm -disable-licm-promotion=true|-mllvm -disable-licm-promotion=false
+
+# -max-reroll-increment (lib/Transforms/Scalar/LoopRerollPass.cpp)
+#   MaxInc - The maximum increment for loop rerolling
+#   unsigned (default: 2048)
+-mllvm -max-reroll-increment=[512..8192]
+
+# -bonus-inst-threshold (lib/Transforms/Scalar/SimplifyCFGPass.cpp)
+#   UserBonusInstThreshold - Control the number of bonus instructions
+#   unsigned (default: 1)
+-mllvm -bonus-inst-threshold=[0..5]
+
+# -rotation-max-header-size (lib/Transforms/Scalar/LoopRotation.cpp)
+#   DefaultRotationThreshold - The default maximum header size for
+#   automatic loop rotation
+#   unsigned (default: 16)
+-mllvm -rotation-max-header-size=[4..48]
+
+# -jump-threading-threshold (lib/Transforms/Scalar/JumpThreading.cpp)
+#   BBDuplicateThreshold - Max block size to duplicate for jump threading
+#   unsigned (default: 6)
+-mllvm -jump-threading-threshold=[2..18]
+
+# -unroll-threshold (lib/Transforms/Scalar/LoopUnrollPass.cpp)
+#   UnrollThreshold - The cut-off point for automatic loop unrolling
+#   unsigned (default: 150)
+-mllvm -unroll-threshold=[50..500]
+
+# -unroll-allow-partial (lib/Transforms/Scalar/LoopUnrollPass.cpp)
+#   UnrollAllowPartial - Allows loops to be partially unrolled until
+#   -unroll-threshold loop size is reached.
+#   bool (default: false)
+-mllvm -unroll-allow-partial=true|-mllvm -unroll-allow-partial=false
+
+# -unroll-runtime (lib/Transforms/Scalar/LoopUnrollPass.cpp)
+#   UnrollRuntime - Unroll loops with run-time trip counts
+#   bool (default: false)
+-mllvm -unroll-runtime=true|-mllvm -unroll-runtime=false
+
+# -pragma-unroll-threshold (lib/Transforms/Scalar/LoopUnrollPass.cpp)
+#   PragmaUnrollThreshold - Unrolled size limit for loops with an unroll
+#   unsigned (default: 16 * 1024)
+-mllvm -pragma-unroll-threshold=[8192..32768]
+
+# -unroll-bound (lib/Transforms/Scalar/LoopUnrollPass.cpp)
+#   UnrollBound - Limits loop unroll factor to a fixed value
+#   unsigned (default: 0)
+-mllvm -unroll-bound=0|-mllvm -unroll-bound=4|-mllvm -unroll-bound=8|-mllvm -unroll-bound=12|-mllvm -unroll-bound=16
+
+# -enable-pre (lib/Transforms/Scalar/GVN.cpp)
+#   EnablePRE - 
+#   bool (default: true)
+-mllvm -enable-pre=true|-mllvm -enable-pre=false
+
+# -enable-load-pre (lib/Transforms/Scalar/GVN.cpp)
+#   EnableLoadPRE - 
+#   bool (default: true)
+-mllvm -enable-load-pre=true|-mllvm -enable-load-pre=false
+
+# -max-recurse-depth (lib/Transforms/Scalar/GVN.cpp)
+#   MaxRecurseDepth - Max recurse depth (default = 100
+#   uint32_t (default: 1000)
+-mllvm -max-recurse-depth=[200..5000]
+
+# -disable-separate-const-offset-from-gep (lib/Transforms/Scalar/SeparateConstOffsetFromGEP.cpp)
+#   DisableSeparateConstOffsetFromGEP - Do not separate the constant
+#   offset from a GEP instruction
+#   bool (default: false)
+-mllvm -disable-separate-const-offset-from-gep=true|-mllvm -disable-separate-const-offset-from-gep=false
+
+# -liv-reduce (lib/Transforms/Scalar/IndVarSimplify.cpp)
+#   ReduceLiveIVs - Reduce live induction variables.
+#   bool (default: )
+-mllvm -liv-reduce=true|-mllvm -liv-reduce=false
+
+# -enable-lsr-phielim (lib/Transforms/Scalar/LoopStrengthReduce.cpp)
+#   EnablePhiElim - Enable LSR phi elimination
+#   bool (default: true)
+-mllvm -enable-lsr-phielim=true|-mllvm -enable-lsr-phielim=false
+
+# -sroa-strict-inbounds (lib/Transforms/Scalar/SROA.cpp)
+#   SROAStrictInbounds - 
+#   bool (default: false)
+-mllvm -sroa-strict-inbounds=true|-mllvm -sroa-strict-inbounds=false
+
+# -inline-threshold (lib/Transforms/IPO/Inliner.cpp)
+#   InlineLimit - Control the amount of inlining to perform (default = 22
+#   int (default: 225)
+-mllvm -inline-threshold=[100..2000]
+
+# -inlinehint-threshold (lib/Transforms/IPO/Inliner.cpp)
+#   HintThreshold - Threshold for inlining functions with inline hint
+#   int (default: 325)
+-mllvm -inlinehint-threshold=[100..2000]
+
+# -inlinecold-threshold (lib/Transforms/IPO/Inliner.cpp)
+#   ColdThreshold - Threshold for inlining functions with cold attribute
+#   int (default: 225)
+-mllvm -inlinecold-threshold=[100..2000]
+
+# -vectorize-loops (lib/Transforms/IPO/PassManagerBuilder.cpp)
+#   RunLoopVectorization - Run the Loop vectorization passes
+#   bool (default: )
+-mllvm -vectorize-loops=true|-mllvm -vectorize-loops=false
+
+# -vectorize-slp (lib/Transforms/IPO/PassManagerBuilder.cpp)
+#   RunSLPVectorization - Run the SLP vectorization passes
+#   bool (default: )
+-mllvm -vectorize-slp=true|-mllvm -vectorize-slp=false
+
+# -use-gvn-after-vectorization (lib/Transforms/IPO/PassManagerBuilder.cpp)
+#   UseGVNAfterVectorization - Run GVN instead of Early CSE after
+#   vectorization passes
+#   bool (default: false)
+-mllvm -use-gvn-after-vectorization=true|-mllvm -use-gvn-after-vectorization=false
+
+# -re-rotate-loops (lib/Transforms/IPO/PassManagerBuilder.cpp)
+#   AdditionalLoopRotation - Run additional LoopRotation pass after GVN
+#   bool (default: false)
+-mllvm -re-rotate-loops=true|-mllvm -re-rotate-loops=false
+
+# -extra-vectorizer-passes (lib/Transforms/IPO/PassManagerBuilder.cpp)
+#   ExtraVectorizerPasses - Run cleanup optimization passes after 
+#   vectorization.
+#   bool (default: false)
+-mllvm -extra-vectorizer-passes=true|-mllvm -extra-vectorizer-passes=false
+
+# -use-new-sroa (lib/Transforms/IPO/PassManagerBuilder.cpp)
+#   UseNewSROA - Enable the new, experimental SROA pass
+#   bool (default: true)
+-mllvm -use-new-sroa=true|-mllvm -use-new-sroa=false
+
+# -reroll-loops (lib/Transforms/IPO/PassManagerBuilder.cpp)
+#   RunLoopRerolling - Run the loop rerolling pass
+#   bool (default: )
+-mllvm -reroll-loops=true|-mllvm -reroll-loops=false
+
+# -combine-loads (lib/Transforms/IPO/PassManagerBuilder.cpp)
+#   RunLoadCombine - Run the load combining pass
+#   bool (default: false)
+-mllvm -combine-loads=true|-mllvm -combine-loads=false
+
+# -licm-2passes (lib/Transforms/IPO/PassManagerBuilder.cpp)
+#   LICMSecondPass - Run again LICM after the instr combining pass
+#   bool (default: false)
+-mllvm -licm-2passes=true|-mllvm -licm-2passes=false
+
+# -run-slp-after-loop-vectorization (lib/Transforms/IPO/PassManagerBuilder.cpp)
+#   RunSLPAfterLoopVectorization - Run the SLP vectorizer
+#   bool (default: true)
+-mllvm -run-slp-after-loop-vectorization=true|-mllvm -run-slp-after-loop-vectorization=false
+
+# -use-cfl-aa (lib/Transforms/IPO/PassManagerBuilder.cpp)
+#   UseCFLAA - Enable the new, experimental CFL alias analysis
+#   bool (default: false)
+-mllvm -use-cfl-aa=true|-mllvm -use-cfl-aa=false
+
+# -mlsm (lib/Transforms/IPO/PassManagerBuilder.cpp)
+#   EnableMLSM - Enable motion of merged load and store
+#   bool (default: true)
+-mllvm -mlsm=true|-mllvm -mlsm=false
+
+# -slp-threshold (lib/Transforms/Vectorize/SLPVectorizer.cpp)
+#   SLPCostThreshold - Only vectorize if you gain more than this number 
+#   int (default: 0)
+-mllvm -slp-threshold=0|-mllvm -slp-threshold=10|-mllvm -slp-threshold=100
+
+# -slp-vectorize-hor (lib/Transforms/Vectorize/SLPVectorizer.cpp)
+#   ShouldVectorizeHor - Attempt to vectorize horizontal reductions
+#   bool (default: false)
+-mllvm -slp-vectorize-hor=true|-mllvm -slp-vectorize-hor=false
+
+# -slp-vectorize-hor-store (lib/Transforms/Vectorize/SLPVectorizer.cpp)
+#   ShouldStartVectorizeHorAtStore - Attempt to vectorize horizontal
+#   reductions feeding into a store
+#   bool (default: false)
+-mllvm -slp-vectorize-hor-store=true|-mllvm -slp-vectorize-hor-store=false
+
+# -enable-if-conversion (lib/Transforms/Vectorize/LoopVectorize.cpp)
+#   EnableIfConversion - Enable if-conversion during vectorization.
+#   bool (default: true)
+-mllvm -enable-if-conversion=true|-mllvm -enable-if-conversion=false
+
+# -vectorizer-min-trip-count (lib/Transforms/Vectorize/LoopVectorize.cpp)
+#   TinyTripCountVectorThreshold - Don't vectorize loops with a constant
+#   trip count that is smaller than this value.
+#   unsigned (default: 16)
+-mllvm -vectorizer-min-trip-count=[4..32]
+
+# -enable-mem-access-versioning (lib/Transforms/Vectorize/LoopVectorize.cpp)
+#   EnableMemAccessVersioning - Enable symblic stride memory access
+#   versioning
+#   bool (default: true)
+-mllvm -enable-mem-access-versioning=true|-mllvm -enable-mem-access-versioning=false
+
+# -force-target-max-vector-interleave (lib/Transforms/Vectorize/LoopVectorize.cpp)
+#   ForceTargetMaxVectorInterleaveFactor - A flag that overrides the
+#   target's max interleave factor for vectorized loops.
+#   unsigned (default: 0)
+-mllvm -force-target-max-vector-interleave=[0..4]
+
+# -small-loop-cost (lib/Transforms/Vectorize/LoopVectorize.cpp)
+#   SmallLoopCost - The cost of a loop that is considered 'small' by the
+#   unroller.
+#   unsigned (default: 20)
+-mllvm -small-loop-cost=[1..100]
+
+# -loop-vectorize-with-block-frequency (lib/Transforms/Vectorize/LoopVectorize.cpp)
+#   LoopVectorizeWithBlockFrequency - Enable the use of the block
+#   frequency analysis to access PGO heuristics
+#   minimizing code growth in cold regions and being more aggressive in
+#   hot regions.
+#   bool (default: false)
+-mllvm -loop-vectorize-with-block-frequency=true|-mllvm -loop-vectorize-with-block-frequency=false
+
+# -vectorize-num-stores-pred (lib/Transforms/Vectorize/LoopVectorize.cpp)
+#   NumberOfStoresToPredicate - Max number of stores to be predicated
+#   behind an if.
+#   unsigned (default: 1)
+-mllvm -vectorize-num-stores-pred=[0..4]
+
+# -enable-ind-var-reg-heur (lib/Transforms/Vectorize/LoopVectorize.cpp)
+#   EnableIndVarRegisterHeur - Count the induction variable only once when
+#   unrolling
+#   bool (default: true)
+-mllvm -enable-ind-var-reg-heur=true|-mllvm -enable-ind-var-reg-heur=false
+
+# -enable-cond-stores-vec (lib/Transforms/Vectorize/LoopVectorize.cpp)
+#   EnableCondStoresVectorization - Enable if predication of stores during
+#   vectorization.
+#   bool (default: false)
+-mllvm -enable-cond-stores-vec=true|-mllvm -enable-cond-stores-vec=false
+
+# -bounds-checking-single-trap (lib/Transforms/Instrumentation/BoundsChecking.cpp)
+#   SingleTrapBB - Use one trap block per function
+#   bool (default: )
+-mllvm -bounds-checking-single-trap=true|-mllvm -bounds-checking-single-trap=false
+
+# -enable-tbaa (lib/Analysis/TypeBasedAliasAnalysis.cpp)
+#   EnableTBAA - 
+#   bool (default: true)
+-mllvm -enable-tbaa=true|-mllvm -enable-tbaa=false
+
+# -costmodel-reduxcost (lib/Analysis/CostModel.cpp)
+#   EnableReduxCost - Recognize reduction patterns.
+#   bool (default: false)
+-mllvm -costmodel-reduxcost=true|-mllvm -costmodel-reduxcost=false
+
+# -da-delinearize (lib/Analysis/DependenceAnalysis.cpp)
+#   Delinearize - Try to delinearize array references.
+#   bool (default: false)
+-mllvm -da-delinearize=true|-mllvm -da-delinearize=false
+
+# -scalar-evolution-max-iterations (lib/Analysis/ScalarEvolution.cpp)
+#   MaxBruteForceIterations - Maximum number of iterations SCEV will
+#   symbolically execute a constant derived loop
+#   unsigned (default: 100)
+-mllvm -scalar-evolution-max-iterations=[50..500]
+
+# -enable-scoped-noalias (lib/Analysis/ScopedNoAliasAA.cpp)
+#   EnableScopedNoAlias - 
+#   bool (default: true)
+-mllvm -enable-scoped-noalias=true|-mllvm -enable-scoped-noalias=false
