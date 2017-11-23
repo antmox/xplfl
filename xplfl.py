@@ -18,7 +18,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-import os, sys, re, random, hashlib, optparse, logging
+import os, sys, re, random, hashlib, optparse, logging, itertools
 import subprocess, threading, atexit, time, operator
 from logging import debug, info, warning, error
 
@@ -340,6 +340,15 @@ class exploration():
             lambda (r, i, f): (0 < r < results.results[ref_id]), run_res)
         for (r, i, f) in flg:
             print >>sys.stderr, 'FLAG-GOOD ', i, r, f
+
+    @generator
+    def gen_all_combinations():
+        """all combinations of compiler flags"""
+        assert exploration.flags_list
+        flags_values = map(
+            lambda flag: flag.values(), exploration.flags_list.flags)
+        for combination in itertools.product(*flags_values):
+            yield list(combination)
 
     @generator
     def gen_random_uniform(prob='0.5'):
