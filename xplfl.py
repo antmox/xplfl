@@ -52,6 +52,13 @@ class results():
 class runner():
 
     @staticmethod
+    def quote_args(args):
+        def sh_quote(arg):
+            return _quote_pos.sub('\\\\', arg)
+        _quote_pos = re.compile('(?=[^-0-9a-zA-Z%+./:=@_])')
+        return ' '.join([sh_quote(a) for a in args])
+
+    @staticmethod
     def setup(jobs=1, run_cmd=None, dryrun=False, **kwargs):
         assert jobs
         runner.dryrun = dryrun or not run_cmd
@@ -61,7 +68,7 @@ class runner():
 
     @staticmethod
     def subcall(*args):
-        debug('XRUN %s' % (' '.join(args)))
+        debug('XRUN %s' % runner.quote_args(args))
         if runner.dryrun:
             time.sleep(0.2)
             return 0, 'XRES %d' % (random.randint(5, 10))
