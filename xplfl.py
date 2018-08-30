@@ -19,7 +19,7 @@
 #
 
 import os, sys, re, random, hashlib, optparse, logging, itertools
-import subprocess, threading, atexit, time, operator
+import subprocess, threading, atexit, time, operator, shlex
 from logging import debug, info, warning, error
 
 
@@ -67,7 +67,7 @@ class runner():
         runner.threads = {}  # {run_id: thread}
 
     @staticmethod
-    def subcall(*args):
+    def subcall(args):
         debug('XRUN %s' % runner.quote_args(args))
         if runner.dryrun:
             time.sleep(0.2)
@@ -97,7 +97,8 @@ class runner():
         def run_wrapper(config, run_id):
             try:
                 status, output = runner.subcall(
-                    '/usr/bin/env', 'XFLAGS=' + config, runner.command)
+                    ['/usr/bin/env', 'XFLAGS=' + config] +
+                    shlex.split(runner.command))
                 results.update(run_id, config, status, output)
             finally:
                 runner.slots.release()
