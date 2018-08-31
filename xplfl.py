@@ -232,6 +232,9 @@ class cmdline():
         group.add_option('-b', '--base-flags', dest='base_flags',
                           action='store', type='string', default=None,
                           help='base flags for exploration')
+        group.add_option('-s', '--seed', dest='seed',
+                          action='store', type='int', default=None,
+                          help='seed for random generator')
         parser.add_option_group(group)
 
         # generators
@@ -295,8 +298,10 @@ class exploration():
     base_flags = None
 
     @staticmethod
-    def setup(generator=None, flags_list=None, base_flags=None, **kwargs):
+    def setup(generator=None, flags_list=None, base_flags=None, seed=None,
+              **kwargs):
         assert generator
+        random.seed(seed)
         exploration.flags_list = flags_list and opt_flag_list(flags_list)
         exploration.base_flags = base_flags or ''
         exploration.generator = generator
