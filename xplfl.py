@@ -152,6 +152,8 @@ class opt_flag_list():
 
         @staticmethod
         def flag_name(s):
+            # bad idea - not unique
+            # should not be used except for debug messages
             i = s.find('=')
             if i != -1:
                 s = s[:i + 1]
@@ -183,8 +185,14 @@ class opt_flag_list():
 
     def find(self, flagstr):
         for flag in self.flags:
-            if (opt_flag_list.opt_flag.flag_name(flag.rand()) ==
-                opt_flag_list.opt_flag.flag_name(flagstr)): return flag
+            if flag.choice:
+                if flagstr in flag.choice: return flag
+            elif flag.range:
+                # TODO: stop using flag_name here. potential issue if several
+                # range flags (with different ranges) share the same name
+                if (opt_flag_list.opt_flag.flag_name(flag.rand()) ==
+                    opt_flag_list.opt_flag.flag_name(flagstr)): return flag
+            else: assert 0
         return None
 
     @staticmethod
