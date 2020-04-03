@@ -70,7 +70,6 @@ class runner():
     def subcall(args):
         debug('XRUN %s' % runner.quote_args(args))
         if runner.dryrun:
-            time.sleep(0.2)
             return 0, 'XRES %d' % (random.randint(5, 10))
         p = subprocess.Popen(
             args, close_fds=True,
@@ -97,7 +96,7 @@ class runner():
         def run_wrapper(config, run_id):
             try:
                 status, output = runner.subcall(
-                    ['/usr/bin/env', 'XFLAGS=' + config] +
+                    ['/usr/bin/env', 'XRUNID=' + run_id, 'XFLAGS=' + config] +
                     shlex.split(runner.command))
                 results.update(run_id, config, status, output)
             finally:
