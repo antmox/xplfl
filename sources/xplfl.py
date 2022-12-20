@@ -240,7 +240,7 @@ class cmdline():
                           action='store', type='int', default=1,
                           help='number of parallel jobs (default: 1)')
 
-        # generators
+        # exploration
         group = optparse.OptionGroup(
             parser, 'Exploration', 'common flags for exploration')
         group.add_option('-f', '--flags', dest='flags_list',
@@ -252,6 +252,9 @@ class cmdline():
         group.add_option('-s', '--seed', dest='seed',
                           action='store', type='int', default=None,
                           help='seed for random generator')
+        group.add_option('--max', dest='maxiter',
+                          action='store', type='int', default=None,
+                          help='maximum number of iterations')
         parser.add_option_group(group)
 
         # generators
@@ -316,11 +319,12 @@ class exploration():
 
     @staticmethod
     def setup(generator=None, flags_list=None, base_flags=None, seed=None,
-              **kwargs):
+              maxiter=None, **kwargs):
         assert generator
         random.seed(seed)
         exploration.flags_list = flags_list and opt_flag_list(flags_list)
         exploration.base_flags = base_flags or ''
+        exploration.maxiter = maxiter
         exploration.generator = generator
 
     @staticmethod
@@ -425,12 +429,14 @@ class exploration():
     @staticmethod
     def loop():
         result = None
-        while True:
+        for n in itertools.count(1):
             try:
                 config = exploration.generator.send(result)
             except StopIteration:
                 break
             result = runner.start(exploration.flags(config))
+            if n == exploration.maxiter:
+                break
 
 
 # ############################################################################
