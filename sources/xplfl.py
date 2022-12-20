@@ -36,14 +36,14 @@ class results():
     # update results table given run command output
     @staticmethod
     def update(run_id, config, status, output):
-        res_lines = not status and filter(
-            lambda x: x.startswith('XRES'), output.splitlines())
+        res_lines = not status and list(
+            line for line in output.splitlines() if line.startswith('XRES'))
         try: res = int(res_lines[-1].split()[1])
         except: res = -1
         with results.lock:
             debug('XRES %d %s %s' % (res, run_id, config))
             results.results.update({run_id: res})
-            print >>sys.stdout, 'XRES %d %s %s' % (res, run_id, config)
+            sys.stdout.write('XRES %d %s %s\n' % (res, run_id, config))
             sys.stdout.flush()
 
 
@@ -88,7 +88,7 @@ class runner():
 
     @staticmethod
     def wait(run_ids=None):
-        run_ids = run_ids or runner.threads.keys()
+        run_ids = run_ids or list(runner.threads.keys())
         for run_id in run_ids: runner.threads[run_id].join()
 
     @staticmethod
@@ -96,8 +96,8 @@ class runner():
         def run_wrapper(config, run_id):
             try:
                 status, output = runner.subcall(
-                    ['/usr/bin/env', 'XRUNID=' + run_id, 'XFLAGS=' + config] +
-                    shlex.split(runner.command))
+                    ['/usr/bin/env', 'XRUNID=' + run_id, 'XFLAGS=' + config]
+                    + shlex.split(runner.command))
                 results.update(run_id, config, status, output)
             finally:
                 runner.slots.release()
@@ -197,7 +197,8 @@ class opt_flag_list():
     @staticmethod
     def parse_line(cmdline):
         cmdline = cmdline or ''
-        cmd = filter(bool, [x.strip() for x in cmdline.strip().split(' ')])
+        cmd = list(filter(bool, [
+            x.strip() for x in cmdline.strip().split(' ')]))
         result, idx, cmdlen = [], 0, len(cmd)
         while idx < cmdlen:
             flag = cmd[idx]
@@ -291,11 +292,11 @@ class generator():
         return self.func(*args)
 
     def descr(self):
-        option_name = '--' + self.func.func_name.replace('_', '-')
-        option_narg = self.func.func_code.co_argcount
-        option_help = self.func.func_doc
+        option_name = '--' + self.func.__name__.replace('_', '-')
+        option_narg = self.func.__code__.co_argcount
+        option_help = self.func.__doc__
         option_args = option_narg and ','.join(
-            self.func.func_code.co_varnames[:option_narg]).upper()
+            self.func.__code__.co_varnames[:option_narg]).upper()
         return option_name, option_narg and 1 or 0, option_help, option_args
 
 
@@ -316,14 +317,13 @@ class exploration():
     @staticmethod
     def flags(*flags):
         # add base_flags and clean resulting list (no dups)
-        flags = map(
-            lambda f: f if isinstance(f, list) else [f], flags)
+        flags = list(f if isinstance(f, list) else [f] for f in flags)
         flags = ' '.join(
             sum(flags, [exploration.base_flags]))
         # [(flag, (index, flag_str))]
-        flags = map(
-            lambda (i, x): (exploration.flags_list.find(x) or x, (i, x)),
-            enumerate(exploration.flags_list.parse_line(flags)))
+        flags = list(
+            (exploration.flags_list.find(ix[1]) or ix[1], ix)
+            for ix in enumerate(exploration.flags_list.parse_line(flags)))
         # dict(...) will keep only last occurence of each flag
         flags = ' '.join(
             map(operator.itemgetter(1), sorted(dict(flags).values())))
@@ -341,32 +341,30 @@ class exploration():
             for flag_val in flag.values(nb=10):
                 run_id = yield [flag_val]
                 run_ids.update({run_id: flag_val})
-        runner.wait(run_ids.keys())
+        runner.wait(list(run_ids.keys()))
         # display flags partition
-        run_res = map(
-            lambda k: (results.results[k], k, run_ids[k]), run_ids.keys())
+        ref_res = results.results[ref_id]
+        run_res = list(
+            (results.results[k], k, run_ids[k]) for k in run_ids.keys())
         #    bad flags (slowdown)
-        flg = filter(
-            lambda (r, i, f): (r > results.results[ref_id]), run_res)
+        flg = list((r, i, f) for (r, i, f) in run_res if (r > ref_res))
         for (r, i, f) in flg:
-            print >>sys.stderr, 'FLAG-BAD  ', i, r, f
+            print('FLAG-BAD  ', i, r, f, file=sys.stderr)
         #    error flags
-        flg = filter(
-            lambda (r, i, f): (r == -1), run_res)
+        flg = list((r, i, f) for (r, i, f) in run_res if (r == -1))
         for (r, i, f) in flg:
-            print >>sys.stderr, 'FLAG-ERROR', i, r, f
+            print('FLAG-ERROR', i, r, f, file=sys.stderr)
         #    good flags (speedup)
-        flg = filter(
-            lambda (r, i, f): (0 < r < results.results[ref_id]), run_res)
+        flg = list((r, i, f) for (r, i, f) in run_res if (0 < r < ref_res))
         for (r, i, f) in flg:
-            print >>sys.stderr, 'FLAG-GOOD ', i, r, f
+            print('FLAG-GOOD ', i, r, f, file=sys.stderr)
 
     @generator
     def gen_all_combinations():
         """all combinations of compiler flags"""
         assert exploration.flags_list
-        flags_values = map(
-            lambda flag: flag.values(), exploration.flags_list.flags)
+        flags_values = list(
+            flag.values() for flag in exploration.flags_list.flags)
         for combination in itertools.product(*flags_values):
             yield list(combination)
 
@@ -375,10 +373,9 @@ class exploration():
         """random combinations of compiler flags"""
         assert exploration.flags_list
         while True:
-            flags = filter(
-                lambda f: random.random() < float(prob),
-                exploration.flags_list.flags)
-            yield map(lambda f: f.rand(), flags)
+            flags = list(f for f in exploration.flags_list.flags if (
+                random.random() < float(prob)))
+            yield list(f.rand() for f in flags)
 
     @generator
     def gen_random_fixed(seqlen='5'):
@@ -386,7 +383,7 @@ class exploration():
         assert exploration.flags_list
         while True:
             flags = random.sample(exploration.flags_list.flags, int(seqlen))
-            yield map(lambda f: f.rand(), flags)
+            yield list(f.rand() for f in flags)
 
     @generator
     def gen_tune(base_flags):
@@ -399,13 +396,15 @@ class exploration():
             for flag_value in [''] + flag.values(nb=10):
                 run_id = yield new_flags.replace(flag_str, flag_value)
                 flag_runs.update({run_id: flag_value})
-            runner.wait(flag_runs.keys())
-            flag_results = map(lambda k: (
-                results.results[k], len(flag_runs[k]), k), flag_runs.keys())
-            flag_results = filter(lambda (r, l, k): r > 0, flag_results)
+            runner.wait(list(flag_runs.keys()))
+            flag_results = list(
+                (results.results[k], len(flag_runs[k]), k)
+                for k in flag_runs.keys())
+            flag_results = list(
+                (r, l, k) for (r, l, k) in flag_results if r > 0)
             best_flag_str = flag_runs[sorted(flag_results)[0][2]]
             new_flags = new_flags.replace(flag_str, best_flag_str).strip()
-        print >>sys.stderr, 'BEST_FLAGS', new_flags
+        print('BEST_FLAGS', new_flags, file=sys.stderr)
 
     @staticmethod
     def loop():
@@ -421,6 +420,7 @@ class exploration():
 # ############################################################################
 
 if __name__ == '__main__':
+    assert sys.hexversion >= 0x03000000
     (opts, args) = cmdline.argparser().parse_args()
     logger.setup(**vars(opts))
     runner.setup(**vars(opts))
