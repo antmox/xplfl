@@ -22,6 +22,8 @@ import os, sys, re, random, hashlib, optparse, logging, itertools
 import subprocess, threading, atexit, time, operator, shlex
 from logging import debug, info, warning, error
 
+assert sys.hexversion >= 0x03070000
+
 
 # ############################################################################
 
@@ -72,7 +74,7 @@ class runner():
         if runner.dryrun:
             return 0, 'XRES %d' % (random.randint(5, 10))
         p = subprocess.Popen(
-            args, close_fds=True,
+            args, close_fds=True, text=True,
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         stdout, stderr = p.communicate()
         return p.returncode, stdout
@@ -148,6 +150,13 @@ class opt_flag_list():
             elif self.choice:
                 return list(self.choice)
             else: assert 0
+
+        def str(self):
+            if self.range:
+                flag, min, max, step = self.range
+                stepstr = (",%d" % step) if (step != 1) else ""
+                return '%s[%d..%d%s]' % (flag, min, max, stepstr)
+            return '|'.join(self.choice)
 
         @staticmethod
         def flag_name(s):
@@ -252,7 +261,7 @@ class cmdline():
 
         def optcallback(option, opt, value, parser, args):
             assert not parser.values.generator, 'only one generator'
-            genargs = value and value.split(',') or []
+            genargs = value.split(',') if not value is None else []
             parser.values.generator = args(*genargs)
 
         for gen in generator.generators:
@@ -330,34 +339,41 @@ class exploration():
         return flags
 
     @generator
-    def gen_one_by_one():
+    def gen_one_by_one(base_flags):
         """try all flags one by one"""
         assert exploration.flags_list
-        # reference run (no flags)
-        ref_id = yield []
-        # run each flag values separately
-        run_ids = {}
+        base_flags = (base_flags or '-Oz/-O3').split("/")
+        # reference ids { baseflag: ref_id }
+        ref_ids = {}
+        for base in base_flags:
+            run_id = yield [base]
+            ref_ids.update({base: run_id})
+        # run each flag values separately for each base flags
+        run_flr = {} # flag -> [ids]
         for flag in exploration.flags_list.flags:
-            for flag_val in flag.values(nb=10):
-                run_id = yield [flag_val]
-                run_ids.update({run_id: flag_val})
-        runner.wait(list(run_ids.keys()))
-        # display flags partition
-        ref_res = results.results[ref_id]
-        run_res = list(
-            (results.results[k], k, run_ids[k]) for k in run_ids.keys())
-        #    bad flags (slowdown)
-        flg = list((r, i, f) for (r, i, f) in run_res if (r > ref_res))
-        for (r, i, f) in flg:
-            print('FLAG-BAD  ', i, r, f, file=sys.stderr)
-        #    error flags
-        flg = list((r, i, f) for (r, i, f) in run_res if (r == -1))
-        for (r, i, f) in flg:
-            print('FLAG-ERROR', i, r, f, file=sys.stderr)
-        #    good flags (speedup)
-        flg = list((r, i, f) for (r, i, f) in run_res if (0 < r < ref_res))
-        for (r, i, f) in flg:
-            print('FLAG-GOOD ', i, r, f, file=sys.stderr)
+            for base in base_flags:
+                res_base = [ref_ids[base]]
+                for flag_val in flag.values(nb=10):
+                    run_id = yield [base, flag_val]
+                    res_base.append(run_id)
+                run_flr.setdefault(flag, []).append(res_base)
+        runner.wait(list(ref_ids.values()) + sum(sum(run_flr.values(), []), []))
+        # look at results for each flags
+        always_same, sometimes_fail, keep = [], [], []
+        for flag in exploration.flags_list.flags:
+            flag_res = list(list(results.results[i] for i in l) for l in run_flr[flag])
+            if (-1) in sum(flag_res, []):
+                sometimes_fail.append(flag)
+            elif set(len(set(x)) for x in flag_res) == set([1]):
+                always_same.append(flag)
+            else: keep.append(flag)
+        # print results
+        for flag in always_same:
+            print('# SAME', flag.str())
+        for flag in sometimes_fail:
+            print('# FAIL', flag.str())
+        for flag in keep:
+            print(flag.str())
 
     @generator
     def gen_all_combinations():
@@ -420,7 +436,6 @@ class exploration():
 # ############################################################################
 
 if __name__ == '__main__':
-    assert sys.hexversion >= 0x03000000
     (opts, args) = cmdline.argparser().parse_args()
     logger.setup(**vars(opts))
     runner.setup(**vars(opts))
@@ -436,10 +451,11 @@ if __name__ == '__main__':
 # - better gcc/llvm flags extraction
 # - results on benchmarks (dhrystone/coremark/specs?)
 # - lto/fdo support/examples
-# - unit tests :)
 # - xplfl flags descr
 # - better logger output
 # - new generators
 # -   one run
 # -   random combinations
 # -   staged exploration, ...
+# - unit tests
+#   - fake flag list =v_val
