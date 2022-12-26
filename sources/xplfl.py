@@ -40,13 +40,21 @@ class results():
     def update(run_id, config, status, output):
         res_lines = not status and list(
             line for line in output.splitlines() if line.startswith('XRES'))
-        try: res = int(res_lines[-1].split()[1])
-        except: res = -1
+        try: res = list(int(w) for w in res_lines[-1].split()[1:]); assert res
+        except: res = None
         with results.lock:
-            debug('XRES %d %s %s' % (res, run_id, config))
+            # XRES CYCLES SIZE
             results.results.update({run_id: res})
-            sys.stdout.write('XRES %d %s %s\n' % (res, run_id, config))
+            # output log
+            sys.stdout.write(
+                '%s XRES %s %s\n' % (run_id, ' '.join(map(str, res)), config)
+                if res else '%s XFAIL %s\n' % (run_id, config))
             sys.stdout.flush()
+            # results file
+            if res and not sys.stderr.isatty():
+                sys.stderr.write('"%s";%s;%s\n' % (
+                    config, run_id, ';'.join(map(str, res))))
+                sys.stderr.flush()
 
 
 # ############################################################################
@@ -85,7 +93,6 @@ class runner():
 
     @staticmethod
     def new_id(config):
-        # hashlib.sha1(config).hexdigest()
         return 'RUN-' + str(int(time.time() * 1000000))
 
     @staticmethod
@@ -346,7 +353,7 @@ class exploration():
     def gen_one_by_one(base_flags):
         """try all flags one by one"""
         assert exploration.flags_list
-        base_flags = (base_flags or '-Oz/-O3').split("/")
+        base_flags = base_flags.split("/")
         # reference ids { baseflag: ref_id }
         ref_ids = {}
         for base in base_flags:
@@ -357,7 +364,7 @@ class exploration():
         for flag in exploration.flags_list.flags:
             for base in base_flags:
                 res_base = [ref_ids[base]]
-                for flag_val in flag.values(nb=10):
+                for flag_val in flag.values(nb=6):
                     run_id = yield [base, flag_val]
                     res_base.append(run_id)
                 run_flr.setdefault(flag, []).append(res_base)
@@ -365,8 +372,10 @@ class exploration():
         # look at results for each flags
         always_same, sometimes_fail, keep = [], [], []
         for flag in exploration.flags_list.flags:
-            flag_res = list(list(results.results[i] for i in l) for l in run_flr[flag])
-            if (-1) in sum(flag_res, []):
+            flag_res = list(list(
+                (results.results[i] and results.results[i][-1] or None)
+                for i in l) for l in run_flr[flag])
+            if None in sum(flag_res, []):
                 sometimes_fail.append(flag)
             elif set(len(set(x)) for x in flag_res) == set([1]):
                 always_same.append(flag)
@@ -421,7 +430,7 @@ class exploration():
                 (results.results[k], len(flag_runs[k]), k)
                 for k in flag_runs.keys())
             flag_results = list(
-                (r, l, k) for (r, l, k) in flag_results if r > 0)
+                (r[-1], l, k) for (r, l, k) in flag_results if r)
             best_flag_str = flag_runs[sorted(flag_results)[0][2]]
             new_flags = new_flags.replace(flag_str, best_flag_str).strip()
         print('BEST_FLAGS', new_flags, file=sys.stderr)
@@ -455,13 +464,12 @@ if __name__ == '__main__':
 # TODO
 # - graphes
 # - better gcc/llvm flags extraction
-# - results on benchmarks (dhrystone/coremark/specs?)
+# - complete example (dhrystone/coremark/?)
 # - lto/fdo support/examples
-# - xplfl flags descr
+# - xplfl flags descr format
 # - better logger output
 # - new generators
 # -   one run
 # -   random combinations
 # -   staged exploration, ...
 # - unit tests
-#   - fake flag list =v_val

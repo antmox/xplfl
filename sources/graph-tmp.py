@@ -354,7 +354,7 @@ def optgraph(opts):
     partitions, attrs_values = {}, dict(scatters_def)
     for c in optcases:
         for (opt, val) in scatters_def:
-            if not re.match(opt, c.variant): continue
+            if not (re.match(opt, c.variant) or re.match(opt, c.flags)): continue
             partitions.setdefault(opt, []).append(c)
             break
     partkeys = [x[0] for x in scatters_def if x[0] in partitions.keys()]
