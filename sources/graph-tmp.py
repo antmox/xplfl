@@ -3,6 +3,7 @@
 import sys, re, math, operator, optparse, itertools, signal
 import matplotlib
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 
 
 # ####################################################################
@@ -45,8 +46,8 @@ class repeatalarm():
 colors = {
     'default-mrk': '#3cb4e6', 'default-edg': '#03234b',
     'frontier': '#e6007e', 'selected': '#e6007e',
-    'reflines': '#03234b', 'grid': '#3cb4e6', 'title': '#03234b', 'face': '#f1f1f3',
     'highlight': ['#ffd200', '#e6007e', '#8c0078', '#49b170', '#03234b'],
+    'reflines': '#070707', 'grid': '#666666', 'title': '#666666', 'face': '#f0f0f0',
 }
 
 
@@ -72,16 +73,20 @@ attrmaps = {
         'marker': '', 'linewidth': 2, 'linestyle': 'solid' },
     'reflines': {
         'color': colors['reflines'],
-        'lw': 2, 'linestyle': 'dashed', 'alpha': 0.4, 'zorder': 9 },
+        'lw': 2, 'linestyle': 'dashed', 'alpha': 0.6 },
     'minor-grid': {
         'linestyle': '--', 'linewidth': 0.5, 'alpha': 0.4 },
+    'axis-labels': {
+        'size': 10, 'weight': 'bold' },
+    'title': {
+        'size': 11, 'weight': 'bold' },
 }
 
 
 # ####################################################################
 
 def draw_graph(getgraph, opts):
-    fg = plt.figure()
+    fg = plt.figure(layout="constrained")
     ax = fg.add_subplot(111)
 
     global graph_plots, all_points
@@ -162,7 +167,9 @@ def draw_graph(getgraph, opts):
         # redraw legend and figure
         if opts.xlim: plt.xlim([float(l) for l in opts.xlim.split(',')])
         if opts.ylim: plt.ylim([float(l) for l in opts.ylim.split(',')])
-        ax.legend(loc='lower left')
+
+        if any(not g._label.startswith('_') for g in graph_plots):
+            ax.legend(loc='best')
         fg.canvas.draw()
 
     # https://stackoverflow.com/a/42014041
@@ -194,6 +201,10 @@ def draw_graph(getgraph, opts):
                 print( point_str(point) )
             return closest
 
+        def unhighlight():
+            selected_points.set_visible(False)
+            fg.canvas.draw()
+
         def highlight(p):
             # highlight point
             selected_points.set_visible(True)
@@ -207,8 +218,8 @@ def draw_graph(getgraph, opts):
             fg.canvas.draw()
             ax.legend_ = main_legend
 
-        print( '#' * 20, event.mouseevent.xdata, event.mouseevent.ydata )
-        highlight(closest(event.mouseevent.xdata, event.mouseevent.ydata))
+        highlight(closest(event.mouseevent.xdata, event.mouseevent.ydata)
+                  ) if not event.mouseevent.dblclick else unhighlight()
 
     # live plotting
     def on_timer(): draw_all()
@@ -225,28 +236,25 @@ def draw_graph(getgraph, opts):
     if opts.ylim: plt.ylim([float(l) for l in opts.ylim.split(',')])
 
     # graph title
-    title = 'Optimization Space for %s' % (opts.id)
-    plt.xlabel('SIZE REDUCTION (HIGHER IS BETTER) -->')
-    plt.ylabel('SPEEDUP (HIGHER IS BETTER) -->')
+    title = 'OPTIMIZATION SPACE FOR %s' % (opts.id)
+    plt.xlabel('SIZE REDUCTION (HIGHER IS BETTER) → ')
+    plt.ylabel('SPEEDUP (HIGHER IS BETTER) → ')
 
     #
     ax.axhline(0, **attrmaps['reflines'])
     ax.axvline(0, **attrmaps['reflines'])
     ax.tick_params(axis='both', colors=colors['grid'], labelsize=9)
-    ax.xaxis.label.set_fontsize(10)
-    ax.xaxis.label.set_fontsize(10)
-    ax.set_facecolor(colors['face'])
-
+    ax.xaxis.label.set_fontproperties(fm.FontProperties(**attrmaps['axis-labels']))
+    ax.yaxis.label.set_fontproperties(fm.FontProperties(**attrmaps['axis-labels']))
     ax.xaxis.label.set_color(colors['grid'])
     ax.yaxis.label.set_color(colors['grid'])
+    ax.set_facecolor(colors['face'])
     for spine in ax.spines.values():
         spine.set_color(colors['grid'])
     plt.grid(True, which='major', color=colors['grid'])
     plt.grid(True, which='minor', color=colors['grid'], **attrmaps['minor-grid'])
     plt.minorticks_on()
-    plt.title(title, color=colors['title'])
-
-    fg.tight_layout()
+    plt.title(title, color=colors['title'], **attrmaps['title'])
     if opts.outfile:
         fg.savefig(opts.outfile)
     fg.canvas.mpl_connect('pick_event', on_pick)
