@@ -253,8 +253,8 @@ class cmdline():
         group.add_option('-f', '--flags', dest='flags_list',
                           action='store', type='string', default=None,
                           help='exploration flags filename')
-        group.add_option('-b', '--base-flags', dest='base_flags',
-                          action='store', type='string', default=None,
+        group.add_option('-b', '--base', dest='base_list',
+                          action='append', type='string', default=None,
                           help='base flags for exploration')
         group.add_option('-s', '--seed', dest='seed',
                           action='store', type='int', default=None,
@@ -272,7 +272,7 @@ class cmdline():
         def optcallback(option, opt, value, parser, args):
             assert not parser.values.generator, 'only one generator'
             genargs = value.split(',') if not value is None else []
-            parser.values.generator = args(*genargs)
+            parser.values.generator = (args, genargs)
 
         for gen in generator.generators:
             name, nargs, help, meta = gen.descr()
@@ -325,12 +325,12 @@ class exploration():
     base_flags = None
 
     @staticmethod
-    def setup(generator=None, flags_list=None, base_flags=None, seed=None,
+    def setup(generator=None, flags_list=None, base_list=None, seed=None,
               maxiter=None, **kwargs):
         assert generator
         random.seed(seed)
         exploration.flags_list = flags_list and opt_flag_list(flags_list)
-        exploration.base_flags = base_flags or ''
+        exploration.base_list = base_list or ['']
         exploration.maxiter = maxiter
         exploration.generator = generator
 
@@ -436,16 +436,30 @@ class exploration():
         print('BEST_FLAGS', new_flags, file=sys.stderr)
 
     @staticmethod
+    def gen_base():
+        base_list = []
+        for base_flags in exploration.base_list:
+            if os.path.isfile(base_flags):
+                base_list.extend(filter(
+                    bool, open(base_flags).read().splitlines()))
+            else: base_list.append(base_flags)
+        for base_flags in base_list:
+            exploration.base_flags = base_flags
+            yield
+
+    @staticmethod
     def loop():
-        result = None
-        for n in itertools.count(1):
-            try:
-                config = exploration.generator.send(result)
-            except StopIteration:
-                break
-            result = runner.start(exploration.flags(config))
-            if n == exploration.maxiter:
-                break
+        for _ in exploration.gen_base():
+            result = None
+            generator = exploration.generator[0](*exploration.generator[1])
+            for n in itertools.count(1):
+                try:
+                    config = generator.send(result)
+                except StopIteration:
+                    break
+                result = runner.start(exploration.flags(config))
+                if n == exploration.maxiter:
+                    break
 
 
 # ############################################################################

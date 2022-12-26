@@ -5,7 +5,6 @@
 $XPLFL/sources/xplfl.py --seed=0 --flags=flags.txt --run="bash run.sh" --gen-one-by-one= 2>results.txt | tee log.txt 
 
 # "" ; -O1 ; -Oz ; -Os ; -O2 ; -O3 ; -Ofail ; -O1 ; -O0 ; -O0
-cat results.txt
 
 [ $(cat results.txt | wc -l) -eq 9 ]
 [ $(cat log.txt | grep -w XRES | wc -l) -eq 9 ]
