@@ -225,8 +225,9 @@ class opt_flag_list():
         def __repr__(self):
             return opt_flag_list.opt_flag.flag_name(self.rand())
 
-    def __init__(self, filename):
+    def __init__(self, filename=None):
         self.flags = []
+        if not filename: return
         # parse flags file
         for line in open(filename):
             line = line.split('#', 1)[0].strip()
@@ -373,7 +374,7 @@ class exploration():
               maxiter=None, **kwargs):
         assert generator
         random.seed(seed)
-        exploration.flags_list = flags_list and opt_flag_list(flags_list)
+        exploration.flags_list = opt_flag_list(flags_list)
         exploration.base_list = base_list or ['']
         exploration.maxiter = maxiter
         exploration.generator = generator
@@ -392,6 +393,30 @@ class exploration():
         flags = ' '.join(
             map(operator.itemgetter(1), sorted(dict(flags).values())))
         return flags
+
+    # ########################################################################
+
+    @generator
+    def gen_base():
+        """reference runs with only base flags"""
+        yield ''
+
+    @generator
+    def gen_random_uniform(prob='0.5'):
+        """random combinations of compiler flags"""
+        assert exploration.flags_list
+        while True:
+            flags = list(f for f in exploration.flags_list.flags if (
+                random.random() < float(prob)))
+            yield list(f.rand() for f in flags)
+
+    @generator
+    def gen_random_fixed(seqlen='5'):
+        """random combinations of fixed length"""
+        assert exploration.flags_list
+        while True:
+            flags = random.sample(exploration.flags_list.flags, int(seqlen))
+            yield list(f.rand() for f in flags)
 
     @generator
     def gen_one_by_one(base_flags):
@@ -441,23 +466,6 @@ class exploration():
             yield list(combination)
 
     @generator
-    def gen_random_uniform(prob='0.5'):
-        """random combinations of compiler flags"""
-        assert exploration.flags_list
-        while True:
-            flags = list(f for f in exploration.flags_list.flags if (
-                random.random() < float(prob)))
-            yield list(f.rand() for f in flags)
-
-    @generator
-    def gen_random_fixed(seqlen='5'):
-        """random combinations of fixed length"""
-        assert exploration.flags_list
-        while True:
-            flags = random.sample(exploration.flags_list.flags, int(seqlen))
-            yield list(f.rand() for f in flags)
-
-    @generator
     def gen_tune(base_flags):
         """pruning/fine-tuning of a given configuration"""
         assert exploration.flags_list
@@ -491,21 +499,23 @@ class exploration():
             print(result.flags)
         return; yield
 
+    # ########################################################################
+
     @staticmethod
-    def gen_base():
+    def loop_base():
         base_list = []
         for base_flags in exploration.base_list:
             if os.path.isfile(base_flags):
                 base_list.extend(filter(
                     bool, open(base_flags).read().splitlines()))
-            else: base_list.append(base_flags)
+            else: base_list.extend(base_flags.split(','))
         for base_flags in base_list:
             exploration.base_flags = base_flags
             yield
 
     @staticmethod
     def loop():
-        for _ in exploration.gen_base():
+        for _ in exploration.loop_base():
             result = None
             generator = exploration.generator[0](*exploration.generator[1])
             for n in itertools.count(1):
