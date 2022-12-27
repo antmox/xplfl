@@ -29,6 +29,47 @@ assert sys.hexversion >= 0x03070000
 
 class results():
 
+    class result:
+        def __init__(self, variant, flags, values=None):
+            self.variant = variant
+            self.flags = flags
+            self.values = values
+
+        def value(self, index=-1):
+            try: return self.values[index]
+            except: return None
+
+        @staticmethod
+        def fromstr(str):
+            words = str.strip().split(';')
+            return results.result(
+                words[1], words[0][1:-1], list(map(int, words[2:])))
+
+    @staticmethod
+    def compute_frontier(results):
+        maybe_on_frontier, mustbe_on_frontier = list(results), set()
+        for c1 in results:
+            on_frontier = True
+            maybe_on_frontier.remove(c1)
+            for c2 in itertools.chain(mustbe_on_frontier, maybe_on_frontier):
+                if (c2.values == c1.values):
+                    pass
+                elif all(c2.decreases[x] > c1.decreases[x]
+                         for x in range(len(c2.values))):
+                    on_frontier = False
+                    break
+            if on_frontier: mustbe_on_frontier.add(c1)
+            c1.on_frontier = on_frontier
+
+    @staticmethod
+    def compute_decreases(results):
+        # compute speedup / size reduction / ...?
+        ref = results[0]
+        for result in results:
+            result.decreases = []
+            for (n, v) in enumerate(result.values): result.decreases.append(
+                    100. * (1.0 - (float(v) / float(ref.values[n]))))
+
     # run_id to result map {run_id: result}
     results = {}
 
@@ -40,20 +81,23 @@ class results():
     def update(run_id, config, status, output):
         res_lines = not status and list(
             line for line in output.splitlines() if line.startswith('XRES'))
-        try: res = list(int(w) for w in res_lines[-1].split()[1:]); assert res
-        except: res = None
+        try:
+            values = list(int(w) for w in res_lines[-1].split()[1:])
+            assert values
+        except: values = None
         with results.lock:
             # XRES CYCLES SIZE
+            res = results.result(run_id, config, values)
             results.results.update({run_id: res})
             # output log
             sys.stdout.write(
-                '%s XRES %s %s\n' % (run_id, ' '.join(map(str, res)), config)
-                if res else '%s XFAIL %s\n' % (run_id, config))
+                '%s XRES %s %s\n' % (run_id, ' '.join(map(str, values)), config)
+                if values else '%s XFAIL %s\n' % (run_id, config))
             sys.stdout.flush()
             # results file
-            if res and not sys.stderr.isatty():
+            if values and not sys.stderr.isatty():
                 sys.stderr.write('"%s";%s;%s\n' % (
-                    config, run_id, ';'.join(map(str, res))))
+                    config, run_id, ';'.join(map(str, values))))
                 sys.stderr.flush()
 
 
@@ -373,8 +417,7 @@ class exploration():
         always_same, sometimes_fail, keep = [], [], []
         for flag in exploration.flags_list.flags:
             flag_res = list(list(
-                (results.results[i] and results.results[i][-1] or None)
-                for i in l) for l in run_flr[flag])
+                results.results[i].value(-1) for i in l) for l in run_flr[flag])
             if None in sum(flag_res, []):
                 sometimes_fail.append(flag)
             elif set(len(set(x)) for x in flag_res) == set([1]):
@@ -427,13 +470,26 @@ class exploration():
                 flag_runs.update({run_id: flag_value})
             runner.wait(list(flag_runs.keys()))
             flag_results = list(
-                (results.results[k], len(flag_runs[k]), k)
+                (results.results[k].value(-1), len(flag_runs[k]), k)
                 for k in flag_runs.keys())
             flag_results = list(
-                (r[-1], l, k) for (r, l, k) in flag_results if r)
+                (r, l, k) for (r, l, k) in flag_results if r)
             best_flag_str = flag_runs[sorted(flag_results)[0][2]]
             new_flags = new_flags.replace(flag_str, best_flag_str).strip()
         print('BEST_FLAGS', new_flags, file=sys.stderr)
+
+    @generator
+    def gen_frontier(result_file):
+        """get list of frontier results"""
+        all_results = list(
+            results.result.fromstr(line)
+            for line in open(result_file).read().splitlines())
+        results.compute_decreases(all_results)
+        results.compute_frontier(all_results)
+        for result in all_results:
+            if not result.on_frontier: continue
+            print(result.flags)
+        return; yield
 
     @staticmethod
     def gen_base():
@@ -465,7 +521,7 @@ class exploration():
 # ############################################################################
 
 if __name__ == '__main__':
-    (opts, args) = cmdline.argparser().parse_args()
+    (opts, args) = cmdline.argparser().parse_args(sys.argv[1:] or ["-h"])
     logger.setup(**vars(opts))
     runner.setup(**vars(opts))
     exploration.setup(**vars(opts))
