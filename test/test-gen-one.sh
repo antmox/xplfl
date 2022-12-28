@@ -2,7 +2,7 @@
 
 #--- test.sh
 
-$XPLFL/sources/xplfl.py --seed=0 --flags=flags.txt --run="bash run.sh" --gen-one-by-one= 2>results.txt | tee log.txt 
+$XPLFL/sources/xplfl.py --seed=0 --flags=flags.txt --run="bash run.sh" --gen-one-by-one= --res=results.txt | tee log.txt
 
 # "" ; -O1 ; -Oz ; -Os ; -O2 ; -O3 ; -Ofail ; -O1 ; -O0 ; -O0
 

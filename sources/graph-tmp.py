@@ -46,7 +46,7 @@ class repeatalarm():
 colors = {
     'default-mrk': '#3cb4e6', 'default-edg': '#03234b',
     'frontier': '#e6007e', 'selected': '#e6007e',
-    'highlight': ['#ffd200', '#e6007e', '#8c0078', '#49b170', '#03234b'],
+    'highlight': ['#ffd200', '#e6007e', '#8c0078', '#49b170', '#ffffff'],
     'reflines': '#070707', 'grid': '#666666', 'title': '#666666', 'face': '#f0f0f0',
 }
 

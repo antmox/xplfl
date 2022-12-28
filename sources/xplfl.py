@@ -29,6 +29,10 @@ assert sys.hexversion >= 0x03070000
 
 class results():
 
+    @staticmethod
+    def setup(res_file, dryrun=False, **kwargs):
+        results.res_file = res_file if not dryrun else None
+
     class result:
         def __init__(self, variant, flags, values=None):
             self.variant = variant
@@ -95,10 +99,9 @@ class results():
                 if values else '%s XFAIL %s\n' % (run_id, config))
             sys.stdout.flush()
             # results file
-            if values and not sys.stderr.isatty():
-                sys.stderr.write('"%s";%s;%s\n' % (
+            if values and results.res_file:
+                open(results.res_file, 'a').write('"%s";%s;%s\n' % (
                     config, run_id, ';'.join(map(str, values))))
-                sys.stderr.flush()
 
 
 # ############################################################################
@@ -205,7 +208,7 @@ class opt_flag_list():
         def str(self):
             if self.range:
                 flag, min, max, step = self.range
-                stepstr = (",%d" % step) if (step != 1) else ""
+                stepstr = (',%d' % step) if (step != 1) else ''
                 return '%s[%d..%d%s]' % (flag, min, max, stepstr)
             return '|'.join(self.choice)
 
@@ -291,6 +294,9 @@ class cmdline():
         parser.add_option('-j', '--jobs', dest='jobs',
                           action='store', type='int', default=1,
                           help='number of parallel jobs (default: 1)')
+        parser.add_option('-o', '--res', dest='res_file',
+                          action='store', type='string', default=None,
+                          help='set the result file name (default: None)')
 
         # exploration
         group = optparse.OptionGroup(
@@ -422,7 +428,7 @@ class exploration():
     def gen_one_by_one(base_flags):
         """try all flags one by one"""
         assert exploration.flags_list
-        base_flags = base_flags.split("/")
+        base_flags = base_flags.split('/')
         # reference ids { baseflag: ref_id }
         ref_ids = {}
         for base in base_flags:
@@ -466,10 +472,12 @@ class exploration():
             yield list(combination)
 
     @generator
-    def gen_tune(base_flags):
+    def gen_tune(nvalue):
         """pruning/fine-tuning of a given configuration"""
         assert exploration.flags_list
-        new_flags = str(base_flags)
+        nvalue = (int(nvalue) if nvalue else -1)
+        new_flags = base_flags = str(exploration.base_flags)
+        exploration.base_flags = ''
         for flag_str in exploration.flags_list.parse_line(base_flags):
             flag, flag_runs = exploration.flags_list.find(flag_str), {}
             if not flag: continue
@@ -478,13 +486,13 @@ class exploration():
                 flag_runs.update({run_id: flag_value})
             runner.wait(list(flag_runs.keys()))
             flag_results = list(
-                (results.results[k].value(-1), len(flag_runs[k]), k)
+                (results.results[k].value(nvalue), len(flag_runs[k]), k)
                 for k in flag_runs.keys())
             flag_results = list(
                 (r, l, k) for (r, l, k) in flag_results if r)
             best_flag_str = flag_runs[sorted(flag_results)[0][2]]
             new_flags = new_flags.replace(flag_str, best_flag_str).strip()
-        print('BEST_FLAGS', new_flags, file=sys.stderr)
+        print('# BEST_FLAGS', new_flags)
 
     @generator
     def gen_frontier(result_file):
@@ -531,9 +539,10 @@ class exploration():
 # ############################################################################
 
 if __name__ == '__main__':
-    (opts, args) = cmdline.argparser().parse_args(sys.argv[1:] or ["-h"])
+    (opts, args) = cmdline.argparser().parse_args(sys.argv[1:] or ['-h'])
     logger.setup(**vars(opts))
     runner.setup(**vars(opts))
+    results.setup(**vars(opts))
     exploration.setup(**vars(opts))
     exploration.loop()
     runner.finalize()
